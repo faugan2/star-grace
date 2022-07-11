@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>logo.jpeg</file>
+        <file>logo-removebg-preview.png</file>
+        <file>images/hammer-outline.svg</file>
+        <file>images/close-outline.svg</file>
+        <file>images/lock-open-outline.svg</file>
+        <file>images/storefront-sharp.svg</file>
+        <file>images/storefront-outline.svg</file>
+        <file>images/grid-outline.svg</file>
+        <file>images/settings-outline.svg</file>
+        <file>images/ellipsis-horizontal-circle-outline.svg</file>
+        <file>images/sync-outline.svg</file>
+        <file>images/refresh-outline.svg</file>
+        <file>images/cloud-upload-outline.svg</file>
+        <file>images/server-outline.svg</file>
+        <file>images/cloud-download-outline.svg</file>
+        <file>images/add-outline.svg</file>
+        <file>images/swap-horizontal-outline.svg</file>
+        <file>images/warning-outline.svg</file>
+        <file>images/qr-code-outline.svg</file>
+        <file>images/logo-euro.svg</file>
+        <file>images/print-outline.svg</file>
+    </qresource>
+</RCC>
