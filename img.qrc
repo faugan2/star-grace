@@ -21,5 +21,51 @@
         <file>images/qr-code-outline.svg</file>
         <file>images/logo-euro.svg</file>
         <file>images/print-outline.svg</file>
+        <file>images/create-outline.svg</file>
+        <file>images/trash-outline.svg</file>
+        <file>images/bag-remove-outline.svg</file>
+        <file>images/logo-bitcoin.svg</file>
+        <file>images/people-outline.svg</file>
+        <file>images/notifications-outline.svg</file>
+        <file>images/ajouter.png</file>
+        <file>images/alerte2.png</file>
+        <file>images/atester.png</file>
+        <file>images/bridge-280.jpg</file>
+        <file>images/categorie.jpg</file>
+        <file>images/categorie.png</file>
+        <file>images/c-users-marie-ange-desktop-bureau-3-2017-nouveau-2.jpeg</file>
+        <file>images/database.png</file>
+        <file>images/default-header-280.jpg</file>
+        <file>images/delete.jpg</file>
+        <file>images/depense.png</file>
+        <file>images/edit.png</file>
+        <file>images/editer.png</file>
+        <file>images/exit.png</file>
+        <file>images/groupe.png</file>
+        <file>images/imprimer.png</file>
+        <file>images/inf2o.png</file>
+        <file>images/info.png</file>
+        <file>images/ligne-plate-bannire-de-site-web-de-conception-des-quipements-de-soins-de-sant-de-clinique-et-d-h-pital-69839138.jpg</file>
+        <file>images/logo.png</file>
+        <file>images/logo_adesco.png</file>
+        <file>images/logo_adesco_old.png</file>
+        <file>images/logo_adesco_old2.png</file>
+        <file>images/logo2.png</file>
+        <file>images/logo3.png</file>
+        <file>images/logout.png</file>
+        <file>images/nouvo logo 2017.jpg</file>
+        <file>images/password.png</file>
+        <file>images/patient.png</file>
+        <file>images/PDF.png</file>
+        <file>images/produit.png</file>
+        <file>images/profession.png</file>
+        <file>images/recette.png</file>
+        <file>images/restaurer.png</file>
+        <file>images/rubrique.png</file>
+        <file>images/supprimer.png</file>
+        <file>images/Tftclean.png</file>
+        <file>images/utilisateur.png</file>
+        <file>images/vc.png</file>
+        <file>images/vente.png</file>
     </qresource>
 </RCC>

@@ -3,6 +3,10 @@
 
 #include <QDialog>
 #include "mainwindow.h"
+#include "includes.h"
+
+
+
 namespace Ui {
 class Login;
 }
@@ -17,10 +21,16 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void onfinish(QNetworkReply *rep);
+
+    void on_identifiant_textChanged(const QString &arg1);
+
+    void on_password_textChanged(const QString &arg1);
 
 private:
     Ui::Login *ui;
     MainWindow *m;
+    QSqlDatabase db;
 };
 
 #endif // LOGIN_H
