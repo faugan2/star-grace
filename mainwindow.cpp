@@ -1471,10 +1471,10 @@ void MainWindow::load_inventaire()
 
 
     if(ui->inventaire_point_vente->currentIndex()!=0){
-       // req+=" and point_vente='"+ui->inventaire_point_vente->currentData().toString()+"'";
+        req+=" and point_vente='"+ui->inventaire_point_vente->currentData().toString()+"'";
     }
     if(ui->inventaire_utilisateurs->currentIndex()!=0){
-       // req+=" and user='"+ui->inventaire_utilisateurs->currentData().toString()+"'";
+        req+=" and user='"+ui->inventaire_utilisateurs->currentData().toString()+"'";
     }
 
     QString du=ui->inventaire_du_2->date().toString("yyyy-MM-dd");

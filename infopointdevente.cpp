@@ -218,6 +218,11 @@ void InfoPointDeVente::on_btn_modifier_stock_clicked()
        if(qr.next()){
            id_user=qr.value(0).toString();
        }
+
+       qr.exec("select * from users where point_vente='"+id_selected+"'");
+       if(qr.next()){
+           id_user=qr.value("token_id").toString();
+       }
        QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
        qr.prepare("insert into mouvements(date,type,produit,qte,user,point_vente,nb_cartons,token,qte_m2,prix,unite,token_id,total_cartons,total_m2,total_pieces) values(:date,:type,:produit,:qte,:user,:point_vente,:nb_cartons,:token,:qte_m2,:prix,:unite,:token_id,:total_cartons,:total_m2,:total_pieces)");
 
