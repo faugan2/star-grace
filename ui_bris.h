@@ -128,6 +128,7 @@ public:
         table_liste_point_vente->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         table_liste_point_vente->setObjectName(QStringLiteral("table_liste_point_vente"));
         table_liste_point_vente->setGridStyle(Qt::DashDotDotLine);
+        table_liste_point_vente->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(table_liste_point_vente);
 

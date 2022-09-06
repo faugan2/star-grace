@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>336</width>
-    <height>155</height>
+    <height>179</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>73</width>
-       <height>20</height>
+       <height>17</height>
       </size>
      </property>
     </spacer>
@@ -49,7 +49,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="styleSheet">
-        <string notr="true">font: 60 15pt &quot;MS Shell Dlg 2&quot;;
+        <string notr="true">font: 50 13pt &quot;MS Shell Dlg 2&quot;;
 </string>
        </property>
        <property name="text">
@@ -93,6 +93,13 @@ width:100px;</string>
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="serveur_distant">
+       <property name="text">
+        <string>Utiliser le serveur distant</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="alerte">
        <property name="styleSheet">
         <string notr="true">text-align:center;
@@ -112,8 +119,8 @@ color: rgb(170, 0, 0);</string>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>74</width>
-       <height>20</height>
+       <width>72</width>
+       <height>17</height>
       </size>
      </property>
     </spacer>

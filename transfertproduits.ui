@@ -26,9 +26,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="btn_print">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color:white;
@@ -99,9 +99,15 @@ padding:5px;</string>
      </item>
      <item>
       <widget class="QTableWidget" name="table_liste_point_vente">
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
        <property name="gridStyle">
         <enum>Qt::DashDotDotLine</enum>
        </property>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>Date</string>
@@ -114,7 +120,7 @@ padding:5px;</string>
        </column>
        <column>
         <property name="text">
-         <string>Quantité</string>
+         <string>Qte en crt</string>
         </property>
        </column>
        <column>
@@ -133,6 +139,12 @@ padding:5px;</string>
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox">
+     <property name="minimumSize">
+      <size>
+       <width>250</width>
+       <height>0</height>
+      </size>
+     </property>
      <property name="maximumSize">
       <size>
        <width>200</width>
@@ -155,41 +167,17 @@ padding:5px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>A</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="qte"/>
-        </item>
-        <item row="2" column="1">
-         <widget class="QComboBox" name="produit">
-          <property name="editable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Produit</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Quantité</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="1">
          <widget class="QComboBox" name="du">
           <property name="editable">
            <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>A</string>
           </property>
          </widget>
         </item>
@@ -201,6 +189,46 @@ padding:5px;</string>
          </widget>
         </item>
        </layout>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="table_produits">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="showGrid">
+         <bool>true</bool>
+        </property>
+        <property name="gridStyle">
+         <enum>Qt::DashDotDotLine</enum>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Produits</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Crt</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Pcs</string>
+         </property>
+        </column>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="qte_en_stock">

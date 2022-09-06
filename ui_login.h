@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -35,6 +36,7 @@ public:
     QLineEdit *identifiant;
     QLineEdit *password;
     QPushButton *pushButton;
+    QCheckBox *serveur_distant;
     QLabel *alerte;
     QSpacerItem *horizontalSpacer_2;
 
@@ -42,14 +44,14 @@ public:
     {
         if (Login->objectName().isEmpty())
             Login->setObjectName(QStringLiteral("Login"));
-        Login->resize(336, 155);
+        Login->resize(336, 179);
         QIcon icon;
         icon.addFile(QStringLiteral(":/img/logo.jpeg"), QSize(), QIcon::Normal, QIcon::Off);
         Login->setWindowIcon(icon);
         Login->setStyleSheet(QStringLiteral(""));
         horizontalLayout = new QHBoxLayout(Login);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalSpacer = new QSpacerItem(73, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer = new QSpacerItem(73, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
 
@@ -63,7 +65,7 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         label = new QLabel(Login);
         label->setObjectName(QStringLiteral("label"));
-        label->setStyleSheet(QLatin1String("font: 60 15pt \"MS Shell Dlg 2\";\n"
+        label->setStyleSheet(QLatin1String("font: 50 13pt \"MS Shell Dlg 2\";\n"
 ""));
 
         verticalLayout->addWidget(label);
@@ -91,6 +93,11 @@ public:
 
         verticalLayout->addWidget(pushButton);
 
+        serveur_distant = new QCheckBox(Login);
+        serveur_distant->setObjectName(QStringLiteral("serveur_distant"));
+
+        verticalLayout->addWidget(serveur_distant);
+
         alerte = new QLabel(Login);
         alerte->setObjectName(QStringLiteral("alerte"));
         alerte->setStyleSheet(QLatin1String("text-align:center;\n"
@@ -101,7 +108,7 @@ public:
 
         horizontalLayout->addLayout(verticalLayout);
 
-        horizontalSpacer_2 = new QSpacerItem(74, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(72, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
@@ -119,6 +126,7 @@ public:
         identifiant->setPlaceholderText(QApplication::translate("Login", "Identifiant", 0));
         password->setPlaceholderText(QApplication::translate("Login", "Mot de passe", 0));
         pushButton->setText(QApplication::translate("Login", "Valider", 0));
+        serveur_distant->setText(QApplication::translate("Login", "Utiliser le serveur distant", 0));
         alerte->setText(QString());
     } // retranslateUi
 

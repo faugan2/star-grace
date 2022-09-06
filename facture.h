@@ -18,6 +18,7 @@ public:
 
 private:
     Ui::Facture *ui;
+    QString numberToText(uint number);
 };
 
 #endif // FACTURE_H

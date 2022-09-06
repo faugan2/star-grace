@@ -26,6 +26,12 @@ private slots:
 
     void on_btn_modifier_stock_clicked();
 
+    void on_unite_carton_clicked();
+
+    void on_unite_m2_clicked();
+
+    void on_unite_piece_clicked();
+
 private:
     Ui::InfoPointDeVente *ui;
     QString id_selected;

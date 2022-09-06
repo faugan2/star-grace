@@ -15,6 +15,7 @@ DetailsVente::DetailsVente(QWidget *parent) :
          token=qr.value(0).toString();
          qDebug()<<token;
      }
+     this->token_facture=token;
 
      qr.exec("select count(*) from mouvements where token='"+token+"'");
      int total=0;
@@ -28,7 +29,13 @@ DetailsVente::DetailsVente(QWidget *parent) :
      float valeur_total=0;
      while(qr.next()){
          QString id_produit=qr.value("produit").toString();
-         QString qte=qr.value("qte_m2").toString();
+         QString qte=qr.value("qte_m2").toString().replace('-',"");
+         QString pu=qr.value("prix").toString();
+         QString unite=qr.value("unite").toString();
+         if(unite!="m2" && unite!=""){
+             unite+="(s)";
+         }
+
 
          QSqlQuery qr2;
          qr2.exec("select * from stock where id='"+id_produit+"'");
@@ -36,19 +43,25 @@ DetailsVente::DetailsVente(QWidget *parent) :
          float prix=0;
          if(qr2.next()){
              nom_produit=qr2.value("nom").toString();
-             prix=qr2.value("prix_par_m2").toFloat();
+             if(pu.isEmpty()){
+                 pu=qr2.value("prix_par_m2").toString();
+             }
+             //prix=qr2.value("prix_par_m2").toFloat();
          }
+         prix=pu.toFloat();
          float qte_int=qte.toFloat();
 
          float total=qte_int*prix;
 
          ui->table_vente->setItem(row,0,new QTableWidgetItem(nom_produit));
-         ui->table_vente->setItem(row,1,new QTableWidgetItem(qte));
-         ui->table_vente->setItem(row,2,new QTableWidgetItem(QString::number(total)));
+         ui->table_vente->setItem(row,1,new QTableWidgetItem(qte+" "+unite));
+         ui->table_vente->setItem(row,2,new QTableWidgetItem(QString::number(prix)));
+         ui->table_vente->setItem(row,3,new QTableWidgetItem(QString::number(total)));
 
          ui->table_vente->item(row,0)->setTextAlignment(Qt::AlignCenter);
          ui->table_vente->item(row,1)->setTextAlignment(Qt::AlignCenter);
          ui->table_vente->item(row,2)->setTextAlignment(Qt::AlignCenter);
+         ui->table_vente->item(row,3)->setTextAlignment(Qt::AlignCenter);
 
 
 
@@ -64,6 +77,12 @@ DetailsVente::DetailsVente(QWidget *parent) :
          QString biz=qr.value("biz").toString();
          QString remise=qr.value("remise").toString();
          QString impaye=qr.value("impaye").toString();
+         QString non_livre=qr.value("non_livre").toString();
+         if(non_livre=="1"){
+             ui->non_livre->show();
+         }else{
+             ui->non_livre->hide();
+         }
 
          if(!remise.isEmpty()){
              remise=remise.split('#').at(1);
@@ -71,7 +90,7 @@ DetailsVente::DetailsVente(QWidget *parent) :
          }
 
          if(!impaye.isEmpty()){
-             impaye=impaye.split("#").at(1);
+             impaye=impaye.split("#").at(2);
              ui->impaye->setText(impaye);
          }
 
@@ -164,12 +183,34 @@ void DetailsVente::print_facture(QString token)
     if(qr.next()){
         bon2=true;
     }
-    facture=new Facture(token,this);
-    bon=new Bon(token,this);
+
+    QString papier="";
+    QString format="";
+
+    qr.exec("select * from print_config");
+    if(qr.next()){
+        papier=qr.value("papier").toString();
+        format=qr.value("format").toString();
+    }
+
 
      QPrinter printer;
-     printer.setPaperSize(QPrinter::A4);
-     printer.setOrientation(QPrinter::Portrait);
+     if(papier=="1"){
+          printer.setPaperSize(QPrinter::A4);
+     }else{
+          printer.setPaperSize(QPrinter::A5);
+     }
+
+     if(format=="2"){
+         printer.setOrientation(QPrinter::Portrait);
+     }else{
+         printer.setOrientation(QPrinter::Landscape);
+     }
+
+     facture=new Facture(token,this);
+     bon=new Bon(token,this);
+
+
      facture->setFixedWidth(printer.pageRect().width());
 
      QPainter painter;
@@ -180,13 +221,15 @@ void DetailsVente::print_facture(QString token)
 
 
      facture->render(&painter);
-
      printer.newPage();
      facture->render(&painter);
-     if(bon2){
+     printer.newPage();
+     bon->render(&painter);
+     painter.end();
+     /*if(bon2){
          printer.newPage();
          bon->render(&painter);
-     }
+     }*/
 
      qr.exec("delete from bon");
 
@@ -201,4 +244,26 @@ void DetailsVente::on_bon_clicked()
     if(v){
         qr.exec("insert into bon values('1')");
     }
+}
+
+void DetailsVente::on_pushButton_2_clicked()
+{
+    QSqlQuery qr;
+
+    int res=QMessageBox::question(this,"Confirmation","Voulez-vous vraiment marquer cette vente comme livré ?");
+    if(res==QMessageBox::Yes){
+        if(qr.exec("update ventes_options set non_livre='0' where token='"+token_facture+"'")){
+            QMessageBox::information(this,"Success","Opération bien effectuée");
+            ui->non_livre->hide();
+        }else{
+            QMessageBox::warning(this,"Erreur","Une erreur est survenue");
+        }
+    }
+}
+
+void DetailsVente::on_pushButton_3_clicked()
+{
+    apercu_facture_with_token=new ApercuFactureWithToken(token_facture,this);
+    apercu_facture_with_token->setModal(true);
+    apercu_facture_with_token->show();
 }

@@ -48,6 +48,7 @@ public:
         table_impaye->setAlternatingRowColors(true);
         table_impaye->setGridStyle(Qt::DashDotDotLine);
         table_impaye->horizontalHeader()->setStretchLastSection(true);
+        table_impaye->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(table_impaye);
 

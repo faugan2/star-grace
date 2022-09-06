@@ -144,6 +144,7 @@ public:
         table_liste_users->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         table_liste_users->setObjectName(QStringLiteral("table_liste_users"));
         table_liste_users->setGridStyle(Qt::DashDotDotLine);
+        table_liste_users->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(table_liste_users);
 

@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -36,6 +35,8 @@ public:
     QLabel *label_header_3;
     QLabel *label_header_4;
     QLabel *label_header_5;
+    QLabel *label_header_8;
+    QLabel *label_pv;
     QLabel *label_header_6;
     QSpacerItem *horizontalSpacer_3;
     QGroupBox *groupBox;
@@ -59,30 +60,16 @@ public:
     QLabel *label_21;
     QLabel *heure;
     QTableWidget *tableWidget;
-    QGroupBox *groupBox_4;
-    QVBoxLayout *verticalLayout_5;
-    QHBoxLayout *horizontalLayout_4;
-    QVBoxLayout *verticalLayout_4;
-    QLabel *label_18;
-    QSpacerItem *verticalSpacer_2;
-    QLabel *label_30;
-    QGroupBox *formGroupBox;
-    QFormLayout *formLayout;
-    QLabel *label_22;
-    QLabel *total_ht;
-    QLabel *label_23;
-    QLabel *remise;
-    QLabel *label_24;
-    QLabel *tva;
-    QLabel *label_29;
-    QLabel *total_ttc;
     QSpacerItem *verticalSpacer;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *banner;
+    QSpacerItem *horizontalSpacer_4;
 
     void setupUi(QDialog *Bon)
     {
         if (Bon->objectName().isEmpty())
             Bon->setObjectName(QStringLiteral("Bon"));
-        Bon->resize(787, 475);
+        Bon->resize(787, 494);
         Bon->setStyleSheet(QStringLiteral("background-color:white;"));
         verticalLayout_3 = new QVBoxLayout(Bon);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
@@ -118,6 +105,16 @@ public:
         label_header_5->setObjectName(QStringLiteral("label_header_5"));
 
         verticalLayout->addWidget(label_header_5);
+
+        label_header_8 = new QLabel(Bon);
+        label_header_8->setObjectName(QStringLiteral("label_header_8"));
+
+        verticalLayout->addWidget(label_header_8);
+
+        label_pv = new QLabel(Bon);
+        label_pv->setObjectName(QStringLiteral("label_pv"));
+
+        verticalLayout->addWidget(label_pv);
 
         label_header_6 = new QLabel(Bon);
         label_header_6->setObjectName(QStringLiteral("label_header_6"));
@@ -245,24 +242,17 @@ public:
         verticalLayout_3->addLayout(horizontalLayout_3);
 
         tableWidget = new QTableWidget(Bon);
-        if (tableWidget->columnCount() < 7)
-            tableWidget->setColumnCount(7);
+        if (tableWidget->columnCount() < 3)
+            tableWidget->setColumnCount(3);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
-        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
-        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
-        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         tableWidget->setMinimumSize(QSize(0, 150));
+        tableWidget->setMaximumSize(QSize(16777215, 16777215));
         tableWidget->setFrameShape(QFrame::NoFrame);
         tableWidget->setLineWidth(0);
         tableWidget->setAlternatingRowColors(true);
@@ -272,116 +262,23 @@ public:
 
         verticalLayout_3->addWidget(tableWidget);
 
-        groupBox_4 = new QGroupBox(Bon);
-        groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
-        verticalLayout_5 = new QVBoxLayout(groupBox_4);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        label_18 = new QLabel(groupBox_4);
-        label_18->setObjectName(QStringLiteral("label_18"));
-        label_18->setStyleSheet(QLatin1String("font-size:12px;\n"
-"font-weight:bold;\n"
-"font-style:italic;"));
-
-        verticalLayout_4->addWidget(label_18);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_4->addItem(verticalSpacer_2);
-
-        label_30 = new QLabel(groupBox_4);
-        label_30->setObjectName(QStringLiteral("label_30"));
-        label_30->setStyleSheet(QLatin1String("font-size:10px;\n"
-"font-weight:bold;"));
-
-        verticalLayout_4->addWidget(label_30);
-
-
-        horizontalLayout_4->addLayout(verticalLayout_4);
-
-        formGroupBox = new QGroupBox(groupBox_4);
-        formGroupBox->setObjectName(QStringLiteral("formGroupBox"));
-        formGroupBox->setMinimumSize(QSize(300, 0));
-        formGroupBox->setMaximumSize(QSize(300, 16777215));
-        formGroupBox->setFlat(false);
-        formLayout = new QFormLayout(formGroupBox);
-        formLayout->setObjectName(QStringLiteral("formLayout"));
-        formLayout->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
-        label_22 = new QLabel(formGroupBox);
-        label_22->setObjectName(QStringLiteral("label_22"));
-        label_22->setStyleSheet(QLatin1String("font-size:13px;\n"
-""));
-
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_22);
-
-        total_ht = new QLabel(formGroupBox);
-        total_ht->setObjectName(QStringLiteral("total_ht"));
-        total_ht->setStyleSheet(QLatin1String("font-weight:bold;\n"
-"font-size:13px;"));
-        total_ht->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        formLayout->setWidget(0, QFormLayout::FieldRole, total_ht);
-
-        label_23 = new QLabel(formGroupBox);
-        label_23->setObjectName(QStringLiteral("label_23"));
-        label_23->setStyleSheet(QLatin1String("font-size:13px;\n"
-""));
-
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_23);
-
-        remise = new QLabel(formGroupBox);
-        remise->setObjectName(QStringLiteral("remise"));
-        remise->setStyleSheet(QLatin1String("font-weight:bold;\n"
-"font-size:13px;"));
-        remise->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        formLayout->setWidget(1, QFormLayout::FieldRole, remise);
-
-        label_24 = new QLabel(formGroupBox);
-        label_24->setObjectName(QStringLiteral("label_24"));
-        label_24->setStyleSheet(QLatin1String("font-size:13px;\n"
-""));
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_24);
-
-        tva = new QLabel(formGroupBox);
-        tva->setObjectName(QStringLiteral("tva"));
-        tva->setStyleSheet(QLatin1String("font-weight:bold;\n"
-"font-size:13px;"));
-        tva->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        formLayout->setWidget(2, QFormLayout::FieldRole, tva);
-
-        label_29 = new QLabel(formGroupBox);
-        label_29->setObjectName(QStringLiteral("label_29"));
-        label_29->setStyleSheet(QLatin1String("font-size:13px;\n"
-""));
-
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_29);
-
-        total_ttc = new QLabel(formGroupBox);
-        total_ttc->setObjectName(QStringLiteral("total_ttc"));
-        total_ttc->setStyleSheet(QLatin1String("font-weight:bold;\n"
-"font-size:13px;"));
-        total_ttc->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        formLayout->setWidget(3, QFormLayout::FieldRole, total_ttc);
-
-
-        horizontalLayout_4->addWidget(formGroupBox);
-
-
-        verticalLayout_5->addLayout(horizontalLayout_4);
-
-
-        verticalLayout_3->addWidget(groupBox_4);
-
-        verticalSpacer = new QSpacerItem(20, 29, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_3->addItem(verticalSpacer);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        banner = new QLabel(Bon);
+        banner->setObjectName(QStringLiteral("banner"));
+
+        horizontalLayout_4->addWidget(banner);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_4);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_4);
 
 
         retranslateUi(Bon);
@@ -397,6 +294,8 @@ public:
         label_header_3->setText(QApplication::translate("Bon", "Vente de mat\303\251riaux de constructions", 0));
         label_header_4->setText(QApplication::translate("Bon", "Plomberie, carreaux, granito, baguette & divers", 0));
         label_header_5->setText(QApplication::translate("Bon", "Tel: 99 74 00 74 / 90 28 10 32", 0));
+        label_header_8->setText(QApplication::translate("Bon", "nom du point de vente", 0));
+        label_pv->setText(QApplication::translate("Bon", "TextLabel", 0));
         label_header_6->setText(QApplication::translate("Bon", "LOME - TOGO", 0));
         groupBox->setTitle(QString());
         label_header_7->setText(QApplication::translate("Bon", "CLIENT ", 0));
@@ -414,30 +313,12 @@ public:
         label_21->setText(QString());
         heure->setText(QApplication::translate("Bon", "13 :31:42", 0));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("Bon", "REFERENCE", 0));
+        ___qtablewidgetitem->setText(QApplication::translate("Bon", "Format", 0));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QApplication::translate("Bon", "DESIGNATION", 0));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("Bon", "QTE", 0));
-        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("Bon", "Unit\303\251", 0));
-        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("Bon", "Prix Unitaire", 0));
-        QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
-        ___qtablewidgetitem5->setText(QApplication::translate("Bon", "Montant Total", 0));
-        QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QApplication::translate("Bon", "EMBALLAGE", 0));
-        groupBox_4->setTitle(QString());
-        label_18->setText(QApplication::translate("Bon", "Arr\303\252t\303\251 la pr\303\251sente facture \303\240 a somme de cent cinq mille francs cfa", 0));
-        label_30->setText(QApplication::translate("Bon", "NB : Les marchandises vendues ne sont ni reprises ni \303\251chang\303\251es. merci pour votre Achat", 0));
-        label_22->setText(QApplication::translate("Bon", "Total HT ( F CFA )", 0));
-        total_ht->setText(QApplication::translate("Bon", "0", 0));
-        label_23->setText(QApplication::translate("Bon", "Total Remise ( F CFA )", 0));
-        remise->setText(QApplication::translate("Bon", "0", 0));
-        label_24->setText(QApplication::translate("Bon", "Total TVA ( F CFA )", 0));
-        tva->setText(QApplication::translate("Bon", "0", 0));
-        label_29->setText(QApplication::translate("Bon", "Total TTC ( F CFA )", 0));
-        total_ttc->setText(QApplication::translate("Bon", "0", 0));
+        ___qtablewidgetitem2->setText(QApplication::translate("Bon", "EMBALLAGE", 0));
+        banner->setText(QString());
     } // retranslateUi
 
 };

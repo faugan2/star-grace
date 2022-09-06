@@ -19,6 +19,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 
@@ -28,12 +29,16 @@ class Ui_InfoStockAlerte
 {
 public:
     QVBoxLayout *verticalLayout;
+    QLabel *point_vente;
     QHBoxLayout *horizontalLayout;
     QLabel *produit;
     QHBoxLayout *horizontalLayout_2;
     QSpacerItem *horizontalSpacer_3;
     QLabel *label_2;
     QLineEdit *qte;
+    QRadioButton *unite_m2;
+    QRadioButton *unite_carton;
+    QRadioButton *unite_piece;
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer_4;
 
@@ -41,14 +46,24 @@ public:
     {
         if (InfoStockAlerte->objectName().isEmpty())
             InfoStockAlerte->setObjectName(QStringLiteral("InfoStockAlerte"));
-        InfoStockAlerte->resize(239, 71);
+        InfoStockAlerte->resize(386, 99);
         verticalLayout = new QVBoxLayout(InfoStockAlerte);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        point_vente = new QLabel(InfoStockAlerte);
+        point_vente->setObjectName(QStringLiteral("point_vente"));
+        point_vente->setStyleSheet(QLatin1String("font-weight:bold;\n"
+""));
+        point_vente->setAlignment(Qt::AlignCenter);
+
+        verticalLayout->addWidget(point_vente);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         produit = new QLabel(InfoStockAlerte);
         produit->setObjectName(QStringLiteral("produit"));
-        produit->setStyleSheet(QStringLiteral("font-weight:bold;"));
+        produit->setStyleSheet(QLatin1String("font-weight:bold;\n"
+"margin-top:16px;"));
+        produit->setAlignment(Qt::AlignCenter);
 
         horizontalLayout->addWidget(produit);
 
@@ -71,8 +86,27 @@ public:
 
         horizontalLayout_2->addWidget(qte);
 
+        unite_m2 = new QRadioButton(InfoStockAlerte);
+        unite_m2->setObjectName(QStringLiteral("unite_m2"));
+        unite_m2->setChecked(true);
+
+        horizontalLayout_2->addWidget(unite_m2);
+
+        unite_carton = new QRadioButton(InfoStockAlerte);
+        unite_carton->setObjectName(QStringLiteral("unite_carton"));
+
+        horizontalLayout_2->addWidget(unite_carton);
+
+        unite_piece = new QRadioButton(InfoStockAlerte);
+        unite_piece->setObjectName(QStringLiteral("unite_piece"));
+
+        horizontalLayout_2->addWidget(unite_piece);
+
         pushButton = new QPushButton(InfoStockAlerte);
         pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setStyleSheet(QLatin1String("background-color:white;\n"
+"border:none;\n"
+"padding:8px;"));
 
         horizontalLayout_2->addWidget(pushButton);
 
@@ -91,9 +125,13 @@ public:
 
     void retranslateUi(QDialog *InfoStockAlerte)
     {
-        InfoStockAlerte->setWindowTitle(QApplication::translate("InfoStockAlerte", "Gestion de l'alerte du produit", 0));
-        produit->setText(QApplication::translate("InfoStockAlerte", "Nom du produit", 0));
+        InfoStockAlerte->setWindowTitle(QApplication::translate("InfoStockAlerte", "Modification du stock", 0));
+        point_vente->setText(QApplication::translate("InfoStockAlerte", "TextLabel", 0));
+        produit->setText(QString());
         label_2->setText(QApplication::translate("InfoStockAlerte", "Qte : ", 0));
+        unite_m2->setText(QApplication::translate("InfoStockAlerte", "M2", 0));
+        unite_carton->setText(QApplication::translate("InfoStockAlerte", "Carton", 0));
+        unite_piece->setText(QApplication::translate("InfoStockAlerte", "Pi\303\250ce", 0));
         pushButton->setText(QApplication::translate("InfoStockAlerte", "Ajouter", 0));
     } // retranslateUi
 

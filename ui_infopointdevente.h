@@ -19,6 +19,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -34,6 +35,9 @@ public:
     QTableWidget *table_produits;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
+    QRadioButton *unite_carton;
+    QRadioButton *unite_m2;
+    QRadioButton *unite_piece;
     QPushButton *btn_modifier_stock;
     QGroupBox *groupBox_2;
     QVBoxLayout *verticalLayout_3;
@@ -66,6 +70,7 @@ public:
         table_produits->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         table_produits->setObjectName(QStringLiteral("table_produits"));
         table_produits->setGridStyle(Qt::DashDotDotLine);
+        table_produits->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(table_produits);
 
@@ -74,6 +79,22 @@ public:
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
+
+        unite_carton = new QRadioButton(groupBox);
+        unite_carton->setObjectName(QStringLiteral("unite_carton"));
+        unite_carton->setChecked(true);
+
+        horizontalLayout->addWidget(unite_carton);
+
+        unite_m2 = new QRadioButton(groupBox);
+        unite_m2->setObjectName(QStringLiteral("unite_m2"));
+
+        horizontalLayout->addWidget(unite_m2);
+
+        unite_piece = new QRadioButton(groupBox);
+        unite_piece->setObjectName(QStringLiteral("unite_piece"));
+
+        horizontalLayout->addWidget(unite_piece);
 
         btn_modifier_stock = new QPushButton(groupBox);
         btn_modifier_stock->setObjectName(QStringLiteral("btn_modifier_stock"));
@@ -121,16 +142,14 @@ public:
         verticalLayout->addWidget(label);
 
         table_users = new QTableWidget(groupBox_2);
-        if (table_users->columnCount() < 4)
-            table_users->setColumnCount(4);
+        if (table_users->columnCount() < 3)
+            table_users->setColumnCount(3);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
         table_users->setHorizontalHeaderItem(0, __qtablewidgetitem3);
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
         table_users->setHorizontalHeaderItem(1, __qtablewidgetitem4);
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
         table_users->setHorizontalHeaderItem(2, __qtablewidgetitem5);
-        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
-        table_users->setHorizontalHeaderItem(3, __qtablewidgetitem6);
         table_users->setObjectName(QStringLiteral("table_users"));
         table_users->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         table_users->setGridStyle(Qt::DashDotDotLine);
@@ -159,6 +178,9 @@ public:
         ___qtablewidgetitem1->setText(QApplication::translate("InfoPointDeVente", "En Stock", 0));
         QTableWidgetItem *___qtablewidgetitem2 = table_produits->horizontalHeaderItem(2);
         ___qtablewidgetitem2->setText(QApplication::translate("InfoPointDeVente", "Ajouter", 0));
+        unite_carton->setText(QApplication::translate("InfoPointDeVente", "Carton", 0));
+        unite_m2->setText(QApplication::translate("InfoPointDeVente", "M2", 0));
+        unite_piece->setText(QApplication::translate("InfoPointDeVente", "Pi\303\250ce", 0));
         btn_modifier_stock->setText(QApplication::translate("InfoPointDeVente", "Modifier", 0));
         groupBox_2->setTitle(QApplication::translate("InfoPointDeVente", "A propos", 0));
         label_adresse->setText(QApplication::translate("InfoPointDeVente", "Point de vente", 0));
@@ -171,8 +193,6 @@ public:
         ___qtablewidgetitem4->setText(QApplication::translate("InfoPointDeVente", "Identifiant", 0));
         QTableWidgetItem *___qtablewidgetitem5 = table_users->horizontalHeaderItem(2);
         ___qtablewidgetitem5->setText(QApplication::translate("InfoPointDeVente", "Mot de passe", 0));
-        QTableWidgetItem *___qtablewidgetitem6 = table_users->horizontalHeaderItem(3);
-        ___qtablewidgetitem6->setText(QApplication::translate("InfoPointDeVente", "Type", 0));
     } // retranslateUi
 
 };

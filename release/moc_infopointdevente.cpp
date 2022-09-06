@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_InfoPointDeVente_t {
-    QByteArrayData data[8];
-    char stringdata[152];
+    QByteArrayData data[11];
+    char stringdata[219];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,12 +36,17 @@ QT_MOC_LITERAL(3, 48, 3),
 QT_MOC_LITERAL(4, 52, 6),
 QT_MOC_LITERAL(5, 59, 31),
 QT_MOC_LITERAL(6, 91, 29),
-QT_MOC_LITERAL(7, 121, 29)
+QT_MOC_LITERAL(7, 121, 29),
+QT_MOC_LITERAL(8, 151, 23),
+QT_MOC_LITERAL(9, 175, 19),
+QT_MOC_LITERAL(10, 195, 22)
     },
     "InfoPointDeVente\0on_table_produits_cellClicked\0"
     "\0row\0column\0on_table_produits_cellActivated\0"
     "on_table_produits_cellChanged\0"
     "on_btn_modifier_stock_clicked\0"
+    "on_unite_carton_clicked\0on_unite_m2_clicked\0"
+    "on_unite_piece_clicked\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -51,7 +56,7 @@ static const uint qt_meta_data_InfoPointDeVente[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -59,15 +64,21 @@ static const uint qt_meta_data_InfoPointDeVente[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   34,    2, 0x08,
-       5,    2,   39,    2, 0x08,
-       6,    2,   44,    2, 0x08,
-       7,    0,   49,    2, 0x08,
+       1,    2,   49,    2, 0x08,
+       5,    2,   54,    2, 0x08,
+       6,    2,   59,    2, 0x08,
+       7,    0,   64,    2, 0x08,
+       8,    0,   65,    2, 0x08,
+       9,    0,   66,    2, 0x08,
+      10,    0,   67,    2, 0x08,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    3,    4,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    3,    4,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    3,    4,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -82,6 +93,9 @@ void InfoPointDeVente::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 1: _t->on_table_produits_cellActivated((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 2: _t->on_table_produits_cellChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 3: _t->on_btn_modifier_stock_clicked(); break;
+        case 4: _t->on_unite_carton_clicked(); break;
+        case 5: _t->on_unite_m2_clicked(); break;
+        case 6: _t->on_unite_piece_clicked(); break;
         default: ;
         }
     }
@@ -112,13 +126,13 @@ int InfoPointDeVente::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 7;
     }
     return _id;
 }

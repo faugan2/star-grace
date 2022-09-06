@@ -29,6 +29,12 @@ INPUT(
 ./release\allprepayement.o
 ./release\facture.o
 ./release\bon.o
+./release\clientprepayement.o
+./release\synchronisation.o
+./release\loading.o
+./release\printtransferts.o
+./release\apercufactur.o
+./release\apercufacturewithtoken.o
 ./release\qrc_img.o
 ./release\moc_mainwindow.o
 ./release\moc_login.o
@@ -59,4 +65,10 @@ INPUT(
 ./release\moc_allprepayement.o
 ./release\moc_facture.o
 ./release\moc_bon.o
+./release\moc_clientprepayement.o
+./release\moc_synchronisation.o
+./release\moc_loading.o
+./release\moc_printtransferts.o
+./release\moc_apercufactur.o
+./release\moc_apercufacturewithtoken.o
 );

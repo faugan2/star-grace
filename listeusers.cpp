@@ -10,7 +10,7 @@ ListeUsers::ListeUsers(QSqlDatabase db, QWidget *parent) :
     setFixedWidth(750);
     this->db=db;
 
-    ui->table_liste_users->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    //ui->table_liste_users->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->table_liste_users->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->btn_del->setEnabled(false);
     ui->btn_edit->setEnabled(false);
@@ -40,7 +40,7 @@ void ListeUsers::load_list()
     qr.exec("select * from users where point_vente<>'-'");
     int r=0;
     while(qr.next()){
-        QString id=qr.value(0).toString();
+        QString id=qr.value("token_id").toString();
         QString nom=qr.value(1).toString();
         QString login=qr.value(2).toString();
         QString password=qr.value(3).toString();
@@ -51,7 +51,7 @@ void ListeUsers::load_list()
         }
         QString point_vente_nom="";
         QSqlQuery qr2;
-        qr2.exec("select * from points_vente where id='"+point_vente+"'");
+        qr2.exec("select * from points_vente where token_id='"+point_vente+"'");
         if(qr2.next()){
             point_vente_nom=qr2.value("adresse").toString();
         }
@@ -83,7 +83,7 @@ void ListeUsers::load_point_vente()
     QSqlQuery qr;
     qr.exec("select * from points_vente");
     while(qr.next()){
-        ui->point_vente->addItem(qr.value(1).toString(),qr.value(0));
+        ui->point_vente->addItem(qr.value(1).toString(),qr.value("token_id"));
     }
 }
 
@@ -120,9 +120,10 @@ void ListeUsers::on_pushButton_clicked()
         return;
     }
      QSqlQuery qr;
+     QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
     if(id_selected_user.isEmpty()){
 
-        qr.prepare("insert into users(nom,login,password,type,point_vente,date_creation,last_login) values(:nom,:login,:password,:type,:point_vente,:date_creation,:last_login)");
+        qr.prepare("insert into users(nom,login,password,type,point_vente,date_creation,last_login,token_id) values(:nom,:login,:password,:type,:point_vente,:date_creation,:last_login,:token_id)");
         qr.bindValue(":nom",nom.toUpper());
         qr.bindValue(":login",login);
         qr.bindValue(":password",password);
@@ -130,6 +131,7 @@ void ListeUsers::on_pushButton_clicked()
         qr.bindValue(":point_vente",id_point_vente.toUpper());
         qr.bindValue(":date_creation",QDateTime::currentDateTime());
         qr.bindValue(":last_login",QDateTime::currentDateTime());
+        qr.bindValue(":token_id",token_id);
 
         if(qr.exec()){
             init();
@@ -138,7 +140,7 @@ void ListeUsers::on_pushButton_clicked()
             ui->alerte->setText("Une erreur est survenue");
         }
     }else{
-        qr.prepare("update users set nom=:nom,login=:login,password=:password,type=:type,point_vente=:point_vente where id=:id");
+        qr.prepare("update users set nom=:nom,login=:login,password=:password,type=:type,point_vente=:point_vente where token_id=:id");
         qr.bindValue(":nom",nom.toUpper());
         qr.bindValue(":login",login);
         qr.bindValue(":password",password);
@@ -173,7 +175,7 @@ void ListeUsers::on_btn_del_clicked()
         int res=QMessageBox::question(this,"Confirmation","Voulez-vous vraiment supprimer l'utilisateur ?");
         if(res==QMessageBox::Yes){
             QSqlQuery qr;
-            if(qr.exec("delete from users where id='"+id_selected_user+"'")){
+            if(qr.exec("delete from users where token_id='"+id_selected_user+"'")){
                 load_list();
                 init();
             }else{
@@ -188,7 +190,7 @@ void ListeUsers::on_btn_del_clicked()
 void ListeUsers::on_btn_edit_clicked()
 {
     QSqlQuery qr;
-    qr.exec("select * from users where id='"+id_selected_user+"'");
+    qr.exec("select * from users where token_id='"+id_selected_user+"'");
     if(qr.next()){
         QString nom=qr.value("nom").toString();
         QString login=qr.value("login").toString();
@@ -198,11 +200,11 @@ void ListeUsers::on_btn_edit_clicked()
 
         QString point_vente_nom="";
         QSqlQuery qr2;
-        qr2.exec("select * from points_vente where id='"+point_vente+"'");
+        qr2.exec("select * from points_vente where token_id='"+point_vente+"'");
         if(qr2.next()){
             point_vente_nom=qr2.value("adresse").toString();
         }
-        qDebug()<<"select * from points_vente where id='"+point_vente+"'="<<point_vente_nom;
+        qDebug()<<"select * from points_vente where token_id='"+point_vente+"'="<<point_vente_nom;
 
         ui->nom->setText(nom);
         ui->login->setText(login);
@@ -224,7 +226,7 @@ void ListeUsers::on_search_textChanged(const QString &arg1)
     qr.exec("select * from users where nom like '%"+arg1+"%' or type  like '%"+arg1+"%' or point_vente  like '%"+arg1+"%'");
     int r=0;
     while(qr.next()){
-        QString id=qr.value(0).toString();
+        QString id=qr.value("token_id").toString();
         QString nom=qr.value(1).toString();
         QString login=qr.value(2).toString();
         QString password=qr.value(3).toString();
@@ -236,7 +238,7 @@ void ListeUsers::on_search_textChanged(const QString &arg1)
 
         QString point_vente_nom="";
         QSqlQuery qr2;
-        qr2.exec("select * from points_vente where id='"+point_vente+"'");
+        qr2.exec("select * from points_vente where token_id='"+point_vente+"'");
         if(qr2.next()){
             point_vente_nom=qr2.value("adresse").toString();
         }

@@ -49,7 +49,7 @@ void AllPrePayement::load_liste()
 
         QString nom_client="";
         QSqlQuery qr2;
-        qr2.exec("select * from clients where id='"+id_client+"'");
+        qr2.exec("select * from clients where token_id='"+id_client+"'");
         if(qr2.next()){
             nom_client=qr2.value("nom").toString();
         }
@@ -83,12 +83,14 @@ void AllPrePayement::on_pushButton_2_clicked()
     if(qr.next()){
         id_user=qr.value(0).toString();
     }
-    qr.prepare("insert into prepayements(client,montant,detail,date,user) values(:client,:montant,:detail,:date,:user)");
+    QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
+    qr.prepare("insert into prepayements(client,montant,detail,date,user,token_id) values(:client,:montant,:detail,:date,:user,:token_id)");
     qr.bindValue(":client",id_client);
     qr.bindValue(":montant",montant);
     qr.bindValue(":detail",detail);
     qr.bindValue(":date",QDate::currentDate());
     qr.bindValue(":user",id_user);
+    qr.bindValue(":token_id",token_id);
 
     if(qr.exec()){
         ui->clients->setCurrentIndex(0);

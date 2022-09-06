@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "includes.h"
+#include "infopointdevente.h"
 namespace Ui {
 class listpointvente;
 }
@@ -28,9 +29,12 @@ private slots:
 
     void on_search_textChanged(const QString &arg1);
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::listpointvente *ui;
     QString id_selected;
+    InfoPointDeVente *info_point_vente;
 };
 
 #endif // LISTPOINTVENTE_H

@@ -11,7 +11,7 @@ Droits::Droits(QString id_user,QWidget *parent) :
     QSqlQuery qr;
     this->id_user=id_user;
 
-    qr.exec("select * from users where id='"+id_user+"'");
+    qr.exec("select * from users where token_id='"+id_user+"'");
     if(qr.next()){
         QString type_user=qr.value("type").toString();
         if(type_user=="Admin"){
@@ -163,9 +163,10 @@ void Droits::on_pushButton_clicked()
 
 
 
+    QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
     QSqlQuery qr;
     qr.exec("delete from droit where user='"+id_user+"'");
-    qr.prepare("insert into droit(user,transfert,depenses,bris,retrait,point_vente,utilisateurs,clients,stock,vente,facture,bon) values(:user,:transfert,:depenses,:bris,:retrait,:point_vente,:utilisateurs,:clients,:stock,:vente,:facture,:bon)");
+    qr.prepare("insert into droit(user,transfert,depenses,bris,retrait,point_vente,utilisateurs,clients,stock,vente,facture,bon,token_id) values(:user,:transfert,:depenses,:bris,:retrait,:point_vente,:utilisateurs,:clients,:stock,:vente,:facture,:bon,:token_id)");
     qr.bindValue(":user",id_user);
     qr.bindValue(":transfert",str_trf);
     qr.bindValue(":depenses",str_dep);
@@ -178,6 +179,7 @@ void Droits::on_pushButton_clicked()
     qr.bindValue(":vente",str_vente);
     qr.bindValue(":facture",str_facture);
     qr.bindValue(":bon",str_bon);
+    qr.bindValue(":token_id",token_id);
     if(qr.exec()){
         QMessageBox::information(this,"Success","Droits définis avec success");
     }else{

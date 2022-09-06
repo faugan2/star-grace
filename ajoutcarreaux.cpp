@@ -13,7 +13,7 @@ AjoutCarreaux::AjoutCarreaux(QWidget *parent) :
     init();
     load_list();
     load_formats();
-    ui->table_liste_point_vente->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    //ui->table_liste_point_vente->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->table_liste_point_vente->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->btn_del->setEnabled(false);
     ui->btn_edit->setEnabled(false);
@@ -46,13 +46,15 @@ void AjoutCarreaux::on_pushButton_clicked()
         }
 
         QSqlQuery qr;
+        QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
         if(id_selected==""){
-            qr.prepare("insert into stock (type,nom,format,prix_par_m2,alerte) values(:type,:nom,:format,:prix_par_m2,:alerte)");
+            qr.prepare("insert into stock (type,nom,format,prix_par_m2,alerte,token_id) values(:type,:nom,:format,:prix_par_m2,:alerte,:token_id)");
             qr.bindValue(":type","1");
             qr.bindValue(":nom",nom.toUpper());
             qr.bindValue(":format",id_format);
             qr.bindValue(":prix_par_m2",prix_par_m2);
             qr.bindValue(":alerte","0");
+            qr.bindValue(":token_id",token_id);
             if(qr.exec()){
                 init();
                 load_list();
@@ -60,7 +62,7 @@ void AjoutCarreaux::on_pushButton_clicked()
                 QMessageBox::warning(this,"Erreur","Une erreur est survenue l'ors de l'insertion");
             }
         }else{
-            qr.prepare("update stock set nom=:nom, format=:format,prix_par_m2=:prix_par_m2 where id=:id");
+            qr.prepare("update stock set nom=:nom, format=:format,prix_par_m2=:prix_par_m2 where token_id=:id");
             qr.bindValue(":nom",nom.toUpper());
             qr.bindValue(":format",id_format);
             qr.bindValue(":prix_par_m2",prix_par_m2);
@@ -89,7 +91,7 @@ void AjoutCarreaux::load_list()
     qr.exec("select * from stock where type='1'");
     int r=0;
     while(qr.next()){
-        QString id=qr.value(0).toString();
+        QString id=qr.value("token_id").toString();
         QString nom=qr.value(2).toString();
         QString format=qr.value(3).toString();
         QString prix_par_m2=qr.value(4).toString();
@@ -97,7 +99,7 @@ void AjoutCarreaux::load_list()
 
         QSqlQuery qr2;
         QString format_nom="-";
-        qr2.exec("select * from formats where id='"+format+"'");
+        qr2.exec("select * from formats where token_id='"+format+"'");
         if(qr2.next()){
             format_nom=qr2.value("nom").toString();
         }
@@ -154,7 +156,7 @@ void AjoutCarreaux::on_search_textChanged(const QString &arg1)
 
         QString format_nom="";
         QSqlQuery qr2;
-        qr2.exec("select * from formats where id='"+format+"'");
+        qr2.exec("select * from formats where token_id='"+format+"'");
         if(qr2.next()){
             format_nom=qr2.value("nom").toString();
         }
@@ -179,14 +181,14 @@ void AjoutCarreaux::on_search_textChanged(const QString &arg1)
 void AjoutCarreaux::on_btn_edit_clicked()
 {
     QSqlQuery qr;
-    qr.exec("select * from stock where id='"+id_selected+"'");
+    qr.exec("select * from stock where token_id='"+id_selected+"'");
     if(qr.next()){
         QString nom=qr.value("nom").toString();
         QString format=qr.value("format").toString();
         QString prix_par_m2=qr.value("prix_par_m2").toString();
 
         QSqlQuery qr2;
-        qr2.exec("select * from formats where id='"+format+"'");
+        qr2.exec("select * from formats where token_id='"+format+"'");
         QString format_nom="";
         if(qr2.next()){
             format_nom=qr2.value("nom").toString();
@@ -205,7 +207,7 @@ void AjoutCarreaux::on_btn_del_clicked()
         int res=QMessageBox::question(this,"Confirmation","Voulez-vous vraiment supprimer le format ?");
         if(res==QMessageBox::Yes){
             QSqlQuery qr;
-            if(qr.exec("delete from stock where id='"+id_selected+"'")){
+            if(qr.exec("delete from stock where token_id='"+id_selected+"'")){
                 load_list();
                 init();
             }else{
@@ -232,7 +234,7 @@ void AjoutCarreaux::load_formats()
     qr.exec("select * from formats");
     ui->format->addItem("Choisir");
     while(qr.next()){
-        ui->format->addItem(qr.value("nom").toString(),qr.value("id"));
+        ui->format->addItem(qr.value("nom").toString(),qr.value("token_id"));
     }
 
 }
@@ -261,7 +263,7 @@ void AjoutCarreaux::on_table_liste_point_vente_cellChanged(int row, int column)
         QString sa=ui->table_liste_point_vente->item(row,3)->text();
         QString id_produit=ui->table_liste_point_vente->item(row,0)->toolTip();
         QSqlQuery qr;
-        qr.exec("update stock set alerte='"+sa+"' where id='"+id_produit+"'");
+        qr.exec("update stock set alerte='"+sa+"' where token_id='"+id_produit+"'");
 
         load_list();
 

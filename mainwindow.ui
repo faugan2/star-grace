@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1083</width>
-    <height>680</height>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,6 +32,30 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
+     <widget class="QLabel" name="user_name">
+      <property name="styleSheet">
+       <string notr="true">font-weight:bold;
+font-size:16px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="user_pv">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -40,7 +64,7 @@
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>300</height>
+            <height>250</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -76,11 +100,20 @@
            </item>
            <item>
             <widget class="QTableWidget" name="table_recette">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>120</height>
+              </size>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
              <property name="alternatingRowColors">
               <bool>true</bool>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
              </property>
              <property name="gridStyle">
               <enum>Qt::DashDotDotLine</enum>
@@ -93,7 +126,7 @@
              </attribute>
              <column>
               <property name="text">
-               <string>Date</string>
+               <string>Facture N°</string>
               </property>
              </column>
              <column>
@@ -106,12 +139,12 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_15">
              <item>
-              <widget class="QLabel" name="total_recette">
+              <widget class="QLabel" name="label_16">
                <property name="styleSheet">
                 <string notr="true">font-weight:bold;</string>
                </property>
                <property name="text">
-                <string/>
+                <string>Ventes</string>
                </property>
               </widget>
              </item>
@@ -129,11 +162,99 @@
               </spacer>
              </item>
              <item>
+              <widget class="QLabel" name="total_recette">
+               <property name="styleSheet">
+                <string notr="true">font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_21">
+             <item>
+              <widget class="QLabel" name="label_11">
+               <property name="styleSheet">
+                <string notr="true">font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>Dépenses</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_11">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="total_depense">
+               <property name="styleSheet">
+                <string notr="true">font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>-0</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_22">
+             <item>
+              <widget class="QLabel" name="label_15">
+               <property name="styleSheet">
+                <string notr="true">font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>Retrait</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_12">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="total_retrait">
+               <property name="styleSheet">
+                <string notr="true">font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>-0</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_23">
+             <item>
               <widget class="QPushButton" name="pushButton_5">
                <property name="styleSheet">
                 <string notr="true">background-color:white;
 border:none;
-padding:5px;</string>
+padding:4px;</string>
                </property>
                <property name="text">
                 <string/>
@@ -144,7 +265,43 @@ padding:5px;</string>
                </property>
               </widget>
              </item>
+             <item>
+              <spacer name="horizontalSpacer_13">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="reste_recette">
+               <property name="styleSheet">
+                <string notr="true">font-weight:bold;</string>
+               </property>
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
             </layout>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>18</height>
+              </size>
+             </property>
+            </spacer>
            </item>
            <item>
             <widget class="QScrollArea" name="scrollArea">
@@ -261,7 +418,7 @@ border:none;</string>
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>200</height>
+            <height>160</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -303,8 +460,8 @@ border:none;</string>
                </property>
                <property name="iconSize">
                 <size>
-                 <width>54</width>
-                 <height>54</height>
+                 <width>36</width>
+                 <height>36</height>
                 </size>
                </property>
                <property name="toolButtonStyle">
@@ -339,8 +496,8 @@ border:none;</string>
                </property>
                <property name="iconSize">
                 <size>
-                 <width>54</width>
-                 <height>54</height>
+                 <width>36</width>
+                 <height>36</height>
                 </size>
                </property>
                <property name="toolButtonStyle">
@@ -375,8 +532,8 @@ border:none;</string>
                </property>
                <property name="iconSize">
                 <size>
-                 <width>54</width>
-                 <height>54</height>
+                 <width>36</width>
+                 <height>36</height>
                 </size>
                </property>
                <property name="toolButtonStyle">
@@ -403,7 +560,7 @@ border:none;</string>
 border:none;</string>
                </property>
                <property name="text">
-                <string>Retrait du DG</string>
+                <string>Retrait</string>
                </property>
                <property name="icon">
                 <iconset resource="img.qrc">
@@ -411,8 +568,8 @@ border:none;</string>
                </property>
                <property name="iconSize">
                 <size>
-                 <width>54</width>
-                 <height>54</height>
+                 <width>36</width>
+                 <height>36</height>
                 </size>
                </property>
                <property name="toolButtonStyle">
@@ -598,6 +755,9 @@ font-size:8px;</string>
          </item>
          <item>
           <widget class="QTableWidget" name="table_inventaire">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="autoFillBackground">
             <bool>true</bool>
            </property>
@@ -610,8 +770,14 @@ font-size:8px;</string>
            <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
            <property name="gridStyle">
             <enum>Qt::DashDotDotLine</enum>
+           </property>
+           <property name="sortingEnabled">
+            <bool>true</bool>
            </property>
            <attribute name="horizontalHeaderStretchLastSection">
             <bool>true</bool>
@@ -645,6 +811,11 @@ font-size:8px;</string>
            <column>
             <property name="text">
              <string>Qte</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Cumul</string>
             </property>
            </column>
            <column>
@@ -685,6 +856,30 @@ color:rgb(170,0,0);</string>
               </size>
              </property>
             </spacer>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="affichage_m2">
+             <property name="text">
+              <string>M2</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="affichage_cartons">
+             <property name="text">
+              <string>Cartons</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="affichage_pieces">
+             <property name="text">
+              <string>Pièces</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_2">
@@ -731,7 +926,7 @@ border:none;
         <property name="title">
          <string>Effectuer une vente</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_18">
+        <layout class="QVBoxLayout" name="verticalLayout_19">
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_13">
            <item>
@@ -883,10 +1078,10 @@ font-weight:bold;</string>
              <item>
               <widget class="QLineEdit" name="pu">
                <property name="enabled">
-                <bool>false</bool>
+                <bool>true</bool>
                </property>
                <property name="readOnly">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -929,7 +1124,7 @@ font-weight:bold;</string>
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
+               <width>150</width>
                <height>0</height>
               </size>
              </property>
@@ -941,6 +1136,56 @@ font-weight:bold;</string>
              </property>
              <property name="placeholderText">
               <string>Calcul de la quantité à sortir</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_13">
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="toolTip">
+              <string>Arrondire par défaut</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color:white;
+padding:5px;
+border:none;
+</string>
+             </property>
+             <property name="text">
+              <string>D</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_14">
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="toolTip">
+              <string>Arrondire par excès</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color:white;
+padding:5px;
+border:none;
+</string>
+             </property>
+             <property name="text">
+              <string>E</string>
              </property>
             </widget>
            </item>
@@ -961,11 +1206,15 @@ font-weight:bold;</string>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_3">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">border:none;
 padding:8px;
-background-color:white;
-</string>
+background-color:indianred;
+color:white;
+border-radius:3px;</string>
                </property>
                <property name="text">
                 <string>Ajouter</string>
@@ -975,6 +1224,79 @@ background-color:white;
             </layout>
            </item>
           </layout>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">padding:0;
+padding-top:3px;</string>
+           </property>
+           <property name="title">
+            <string/>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_24">
+            <item>
+             <widget class="QPushButton" name="nb_cartons">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border:none;
+background-color:white;
+</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="nb_m2">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border:none;
+background-color:white;
+</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="nb_pieces">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border:none;
+background-color:white;
+</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </item>
          <item>
           <widget class="QTableWidget" name="table_vente">
@@ -998,6 +1320,9 @@ background-color:white;
            </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
            </property>
            <property name="showGrid">
             <bool>true</bool>
@@ -1032,6 +1357,57 @@ background-color:white;
           </widget>
          </item>
          <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_19">
+           <item>
+            <spacer name="horizontalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_4">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="toolTip">
+              <string>Supprimer</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color:white;
+border:none;
+padding:5px;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="img.qrc">
+               <normaloff>:/img/images/trash-outline.svg</normaloff>:/img/images/trash-outline.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btn_apercu">
+             <property name="styleSheet">
+              <string notr="true">padding:8px;
+border:none;
+background-color:white;</string>
+             </property>
+             <property name="text">
+              <string>Aperçu Avant Impression</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
             <spacer name="horizontalSpacer_5">
@@ -1055,11 +1431,54 @@ color:black;
 </string>
              </property>
              <property name="text">
-              <string>Total = 0 FCFA</string>
+              <string>Total = 0 F CFA</string>
              </property>
             </widget>
            </item>
           </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_18">
+           <item>
+            <spacer name="horizontalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_remise">
+             <property name="styleSheet">
+              <string notr="true">font-size:10px;
+font-weight:bold;
+color:black;
+</string>
+             </property>
+             <property name="text">
+              <string>Remise = 0 F CFA</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -1120,140 +1539,123 @@ border:none;</string>
           </layout>
          </item>
          <item>
-          <spacer name="verticalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <layout class="QHBoxLayout" name="horizontalLayout_20">
            <item>
-            <widget class="QCheckBox" name="bon">
-             <property name="styleSheet">
-              <string notr="true">font-size:10px;</string>
-             </property>
-             <property name="text">
-              <string>Bon</string>
-             </property>
-            </widget>
+            <layout class="QVBoxLayout" name="verticalLayout_18">
+             <item>
+              <widget class="QCheckBox" name="non_livre">
+               <property name="styleSheet">
+                <string notr="true">font-size:10px;</string>
+               </property>
+               <property name="text">
+                <string>Payé &amp; Non Livré</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="bon">
+               <property name="styleSheet">
+                <string notr="true">font-size:10px;</string>
+               </property>
+               <property name="text">
+                <string>Bon</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_4">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="toolTip">
-              <string>Supprimer</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:white;
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <spacer name="horizontalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_11">
+               <property name="toolTip">
+                <string>Impayé</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color:white;
 border:none;
 padding:5px;</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="img.qrc">
-               <normaloff>:/img/images/trash-outline.svg</normaloff>:/img/images/trash-outline.svg</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_11">
-             <property name="toolTip">
-              <string>Impayé</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:white;
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="img.qrc">
+                 <normaloff>:/img/images/vente.png</normaloff>:/img/images/vente.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_7">
+               <property name="toolTip">
+                <string>Biz</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color:white;
 border:none;
 padding:5px;</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="img.qrc">
-               <normaloff>:/img/images/vente.png</normaloff>:/img/images/vente.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_7">
-             <property name="toolTip">
-              <string>Biz</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:white;
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="img.qrc">
+                 <normaloff>:/img/images/logo-bitcoin.svg</normaloff>:/img/images/logo-bitcoin.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_8">
+               <property name="toolTip">
+                <string>Remise</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color:white;
 border:none;
 padding:5px;</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="img.qrc">
-               <normaloff>:/img/images/logo-bitcoin.svg</normaloff>:/img/images/logo-bitcoin.svg</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_8">
-             <property name="toolTip">
-              <string>Remise</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:white;
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="img.qrc">
+                 <normaloff>:/img/images/bag-remove-outline.svg</normaloff>:/img/images/bag-remove-outline.svg</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_6">
+               <property name="toolTip">
+                <string>Imprimer</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color:white;
 border:none;
 padding:5px;</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="img.qrc">
-               <normaloff>:/img/images/bag-remove-outline.svg</normaloff>:/img/images/bag-remove-outline.svg</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_6">
-             <property name="toolTip">
-              <string>Imprimer</string>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color:white;
-border:none;
-padding:5px;</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="img.qrc">
-               <normaloff>:/img/images/imprimer.png</normaloff>:/img/images/imprimer.png</iconset>
-             </property>
-            </widget>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="img.qrc">
+                 <normaloff>:/img/images/imprimer.png</normaloff>:/img/images/imprimer.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </item>
@@ -1282,7 +1684,7 @@ padding:5px;</string>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>60</height>
+          <height>95</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -1299,7 +1701,7 @@ padding:5px;</string>
       <item>
        <widget class="QGroupBox" name="list_prepaye">
         <property name="title">
-         <string>Pré-Payés</string>
+         <string>Dépots des clients</string>
         </property>
        </widget>
       </item>
@@ -1309,6 +1711,69 @@ padding:5px;</string>
          <string>Impayés</string>
         </property>
        </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_17">
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="serveur_distant">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Utiliser le serveur distant</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_12">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">padding:8px;
+background-color: green;
+border:none;
+color:white;</string>
+        </property>
+        <property name="text">
+         <string>Synchroniser</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_8">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </item>
@@ -1341,15 +1806,9 @@ padding:5px;</string>
     <property name="title">
      <string>Stock</string>
     </property>
-    <widget class="QMenu" name="menuCarreaux">
-     <property name="title">
-      <string>Carreaux</string>
-     </property>
-     <addaction name="actionAjouter"/>
-     <addaction name="actionCat_gories"/>
-    </widget>
-    <addaction name="menuCarreaux"/>
+    <addaction name="actionAjouter"/>
     <addaction name="actionAutres_produits"/>
+    <addaction name="actionCat_gories"/>
     <addaction name="actionAlertes"/>
    </widget>
    <widget class="QMenu" name="menuSynchronisation">
@@ -1419,7 +1878,7 @@ padding:5px;</string>
   <action name="actionDeconnexion">
    <property name="icon">
     <iconset resource="img.qrc">
-     <normaloff>:/img/images/password.png</normaloff>:/img/images/password.png</iconset>
+     <normaloff>:/img/images/logout.png</normaloff>:/img/images/logout.png</iconset>
    </property>
    <property name="text">
     <string>Deconnexion</string>
@@ -1460,6 +1919,9 @@ padding:5px;</string>
    <property name="text">
     <string>Synchroniser les données...</string>
    </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionSauvegarder_la_base_de_donn_es">
    <property name="icon">
@@ -1469,6 +1931,9 @@ padding:5px;</string>
    <property name="text">
     <string>Sauvegarder la base de données</string>
    </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
   </action>
   <action name="actionRestaurer_la_base_de_donn_es">
    <property name="icon">
@@ -1477,6 +1942,9 @@ padding:5px;</string>
    </property>
    <property name="text">
     <string>Restaurer la base de données</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
    </property>
   </action>
   <action name="actionListe_des_utilisateurs">
@@ -1512,7 +1980,7 @@ padding:5px;</string>
      <normaloff>:/img/images/grid-outline.svg</normaloff>:/img/images/grid-outline.svg</iconset>
    </property>
    <property name="text">
-    <string>Liste des carreaux</string>
+    <string>Carreaux</string>
    </property>
   </action>
   <action name="actionCat_gories">
@@ -1521,7 +1989,7 @@ padding:5px;</string>
      <normaloff>:/img/images/print-outline.svg</normaloff>:/img/images/print-outline.svg</iconset>
    </property>
    <property name="text">
-    <string>Formats de carreaux</string>
+    <string>Formats</string>
    </property>
   </action>
   <action name="actionClients_avec_impay_s">
@@ -1531,7 +1999,7 @@ padding:5px;</string>
   </action>
   <action name="actionClients_avec_pr_payements">
    <property name="text">
-    <string>Clients avec pré-payements</string>
+    <string>Dépots des clients</string>
    </property>
   </action>
   <action name="actionAlertes">

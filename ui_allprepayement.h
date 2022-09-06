@@ -88,6 +88,7 @@ public:
         table_pre_payement->setObjectName(QStringLiteral("table_pre_payement"));
         table_pre_payement->setGridStyle(Qt::DashDotDotLine);
         table_pre_payement->horizontalHeader()->setStretchLastSection(true);
+        table_pre_payement->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(table_pre_payement);
 
@@ -156,7 +157,7 @@ public:
 
     void retranslateUi(QDialog *AllPrePayement)
     {
-        AllPrePayement->setWindowTitle(QApplication::translate("AllPrePayement", "Tous les pr\303\251-payements", 0));
+        AllPrePayement->setWindowTitle(QApplication::translate("AllPrePayement", "Tous les d\303\251p\303\264ts", 0));
         btn_del->setText(QString());
         QTableWidgetItem *___qtablewidgetitem = table_pre_payement->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("AllPrePayement", "Date", 0));

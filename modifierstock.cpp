@@ -13,7 +13,7 @@ ModifierStock::ModifierStock(QString id,QWidget *parent) :
     ui->ajouter->setChecked(true);
 
     QSqlQuery qr;
-    qr.exec("select * from stock where id='"+id_selected+"'");
+    qr.exec("select * from stock where token_id='"+id_selected+"'");
     if(qr.next()){
         QString nom=qr.value("nom").toString().toUpper();
         QString type=qr.value("type").toString();
@@ -49,7 +49,7 @@ void ModifierStock::on_pushButton_clicked()
     }
 
     QSqlQuery qr;
-    qr.exec("select * from stock where id='"+id_selected+"'");
+    qr.exec("select * from stock where token_id='"+id_selected+"'");
     QString produit="";
     if(qr.next()){
         produit=qr.value("nom").toString();

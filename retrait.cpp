@@ -38,11 +38,13 @@ void Retrait::on_pushButton_clicked()
     if(qr.next()){
         id_user=qr.value(0).toString();
     }
-    qr.prepare("insert into retrait(montant,motif,date,user) values(:montant,:motif,:date,:user)");
+    QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
+    qr.prepare("insert into retrait(montant,motif,date,user,token_id) values(:montant,:motif,:date,:user,:token_id)");
     qr.bindValue(":montant",montant);
     qr.bindValue(":motif",motif);
     qr.bindValue(":date",QDate::currentDate());
     qr.bindValue(":user",id_user);
+    qr.bindValue(":token_id",token_id);
 
     if(qr.exec()){
         ui->montant->clear();

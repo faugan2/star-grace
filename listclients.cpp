@@ -29,13 +29,15 @@ void listclients::on_pushButton_clicked()
         QMessageBox::warning(this,"Erreur","Remplissez tous champs avant de valider");
         return;
     }
+    QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
 
     QSqlQuery qr;
     if(id_selected==""){
-        qr.prepare("insert into clients (sexe,nom,contact) values(:sexe,:nom,:contact)");
+        qr.prepare("insert into clients (sexe,nom,contact,token_id) values(:sexe,:nom,:contact,:token)");
         qr.bindValue(":sexe",sexe);
         qr.bindValue(":nom",nom.toUpper());
         qr.bindValue(":contact",contact);
+        qr.bindValue(":token",token_id);
 
         if(qr.exec()){
             init();
@@ -44,7 +46,7 @@ void listclients::on_pushButton_clicked()
             QMessageBox::warning(this,"Erreur","Une erreur est survenue l'ors de l'insertion");
         }
     }else{
-        qr.prepare("update clients set nom=:nom, sexe=:sexe,contact=:contact where id=:id");
+        qr.prepare("update clients set nom=:nom, sexe=:sexe,contact=:contact where token_id=:id");
         qr.bindValue(":sexe",sexe);
         qr.bindValue(":nom",nom);
         qr.bindValue(":contact",contact);
@@ -74,7 +76,7 @@ void listclients::load_list()
     qr.exec("select * from clients");
     int r=0;
     while(qr.next()){
-        QString id=qr.value(0).toString();
+        QString id=qr.value("token_id").toString();
         QString sexe=qr.value(1).toString();
         QString nom=qr.value(2).toString();
         QString contact=qr.value(3).toString();
@@ -109,7 +111,7 @@ void listclients::on_btn_del_clicked()
         int res=QMessageBox::question(this,"Confirmation","Voulez-vous vraiment supprimer le format ?");
         if(res==QMessageBox::Yes){
             QSqlQuery qr;
-            if(qr.exec("delete from clients where id='"+id_selected+"'")){
+            if(qr.exec("delete from clients where token_id='"+id_selected+"'")){
                 load_list();
                 init();
             }else{
@@ -145,7 +147,7 @@ void listclients::on_search_textChanged(const QString &arg1)
     int r=0;
     //ui->table_liste_point_vente->setRowCount(0);
     while(qr.next()){
-        QString id=qr.value(0).toString();
+        QString id=qr.value("token_id").toString();
         QString sexe=qr.value(1).toString();
         QString nom=qr.value(2).toString();
         QString contact=qr.value(3).toString();
@@ -169,7 +171,7 @@ void listclients::on_search_textChanged(const QString &arg1)
 void listclients::on_btn_edit_clicked()
 {
     QSqlQuery qr;
-    qr.exec("select * from clients where id='"+id_selected+"'");
+    qr.exec("select * from clients where token_id='"+id_selected+"'");
     if(qr.next()){
         QString sexe=qr.value("sexe").toString();
         QString nom=qr.value("nom").toString();

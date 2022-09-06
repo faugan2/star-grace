@@ -65,6 +65,7 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QCheckBox *droit_stock;
     QSpacerItem *horizontalSpacer_8;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_10;
     QSpacerItem *horizontalSpacer_9;
     QPushButton *pushButton;
@@ -245,6 +246,10 @@ public:
 
 
         verticalLayout_2->addLayout(horizontalLayout_5);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer);
 
 
         horizontalLayout_13->addLayout(verticalLayout_2);

@@ -30,14 +30,16 @@ void Listformat::on_pushButton_clicked()
         return;
     }
 
+    QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
     QSqlQuery qr;
     if(id_selected==""){
-        qr.prepare("insert into formats (nom,pieces_par_m2,pieces_par_carton,dimension,prix) values(:nom,:pieces_par_m2,:pieces_par_carton,:dimension,:prix)");
+        qr.prepare("insert into formats (nom,pieces_par_m2,pieces_par_carton,dimension,prix,token_id) values(:nom,:pieces_par_m2,:pieces_par_carton,:dimension,:prix,:token_id)");
         qr.bindValue(":nom",nom.toUpper());
         qr.bindValue(":pieces_par_m2",pieces_par_m2);
         qr.bindValue(":pieces_par_carton",pieces_par_carton);
         qr.bindValue(":dimension",dimension);
         qr.bindValue(":prix",prix);
+        qr.bindValue(":token_id",token_id);
         if(qr.exec()){
             ui->nom->clear();
             ui->pieces_par_cartons->clear();
@@ -48,7 +50,7 @@ void Listformat::on_pushButton_clicked()
             QMessageBox::warning(this,"Erreur","Une erreur est survenue l'ors de l'insertion");
         }
     }else{
-        qr.prepare("update formats set nom=:nom, pieces_par_m2=:pieces_par_m2,pieces_par_carton=:pieces_par_carton,dimension=:dimension,prix=:prix where id=:id");
+        qr.prepare("update formats set nom=:nom, pieces_par_m2=:pieces_par_m2,pieces_par_carton=:pieces_par_carton,dimension=:dimension,prix=:prix where token_id=:id");
         qr.bindValue(":nom",nom.toUpper());
         qr.bindValue(":pieces_par_m2",pieces_par_m2);
         qr.bindValue(":pieces_par_carton",pieces_par_carton);
@@ -79,7 +81,7 @@ void Listformat::load_list()
     qr.exec("select * from formats");
     int r=0;
     while(qr.next()){
-        QString id=qr.value(0).toString();
+        QString id=qr.value("token_id").toString();
         QString nom=qr.value(1).toString();
         QString pieces_par_m2=qr.value(2).toString();
         QString pieces_par_carton=qr.value(3).toString();
@@ -117,7 +119,7 @@ void Listformat::on_btn_del_clicked()
         int res=QMessageBox::question(this,"Confirmation","Voulez-vous vraiment supprimer le format ?");
         if(res==QMessageBox::Yes){
             QSqlQuery qr;
-            if(qr.exec("delete from formats where id='"+id_selected+"'")){
+            if(qr.exec("delete from formats where token_id='"+id_selected+"'")){
                 load_list();
                 init();
             }else{
@@ -154,7 +156,7 @@ void Listformat::on_search_textChanged(const QString &arg1)
     int r=0;
     //ui->table_liste_point_vente->setRowCount(0);
     while(qr.next()){
-        QString id=qr.value(0).toString();
+        QString id=qr.value("token_id").toString();
         QString nom=qr.value(1).toString();
         QString pieces_par_m2=qr.value(2).toString();
         QString pieces_par_carton=qr.value(3).toString();
@@ -176,7 +178,7 @@ void Listformat::on_search_textChanged(const QString &arg1)
 void Listformat::on_btn_edit_clicked()
 {
     QSqlQuery qr;
-    qr.exec("select * from formats where id='"+id_selected+"'");
+    qr.exec("select * from formats where token_id='"+id_selected+"'");
     if(qr.next()){
         QString nom=qr.value("nom").toString();
         QString pieces_par_m2=qr.value("pieces_par_m2").toString();

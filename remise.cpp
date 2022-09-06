@@ -10,6 +10,14 @@ Remise::Remise(float total,QWidget *parent) :
     this->total=total;
 
     ui->montant_facture->setText("Total Facture = "+QString::number(total));
+    QSqlQuery qr;
+    qr.exec("select * from remise");
+    if(qr.next()){
+        QString remise=qr.value("montant").toString();
+        ui->a_payer->setText(remise);
+    }else{
+        ui->a_payer->setText("");
+    }
 }
 
 Remise::~Remise()

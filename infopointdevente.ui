@@ -25,6 +25,9 @@
         <property name="gridStyle">
          <enum>Qt::DashDotDotLine</enum>
         </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
         <column>
          <property name="text">
           <string>Produit</string>
@@ -56,6 +59,30 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="unite_carton">
+          <property name="text">
+           <string>Carton</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="unite_m2">
+          <property name="text">
+           <string>M2</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="unite_piece">
+          <property name="text">
+           <string>Pièce</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="btn_modifier_stock">
@@ -144,11 +171,6 @@ font-weight:bold;</string>
           <column>
            <property name="text">
             <string>Mot de passe</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Type</string>
            </property>
           </column>
          </widget>

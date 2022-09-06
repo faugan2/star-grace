@@ -6,23 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>239</width>
-    <height>71</height>
+    <width>386</width>
+    <height>99</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Gestion de l'alerte du produit</string>
+   <string>Modification du stock</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="point_vente">
+     <property name="styleSheet">
+      <string notr="true">font-weight:bold;
+</string>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="produit">
        <property name="styleSheet">
-        <string notr="true">font-weight:bold;</string>
+        <string notr="true">font-weight:bold;
+margin-top:16px;</string>
        </property>
        <property name="text">
-        <string>Nom du produit</string>
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -54,7 +72,36 @@
       <widget class="QLineEdit" name="qte"/>
      </item>
      <item>
+      <widget class="QRadioButton" name="unite_m2">
+       <property name="text">
+        <string>M2</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="unite_carton">
+       <property name="text">
+        <string>Carton</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="unite_piece">
+       <property name="text">
+        <string>Pièce</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton">
+       <property name="styleSheet">
+        <string notr="true">background-color:white;
+border:none;
+padding:8px;</string>
+       </property>
        <property name="text">
         <string>Ajouter</string>
        </property>

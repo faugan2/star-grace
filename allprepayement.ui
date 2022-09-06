@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Tous les pré-payements</string>
+   <string>Tous les dépôts</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_3">
    <item>
@@ -54,6 +54,9 @@
        </property>
        <attribute name="horizontalHeaderStretchLastSection">
         <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
        </attribute>
        <column>
         <property name="text">

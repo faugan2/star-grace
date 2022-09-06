@@ -15,6 +15,15 @@
 #include <QPagedPaintDevice>
 #include <QPrintDialog>
 #include <QStaticText>
+#include <QFile>
+#include <QImage>
+#include <QFileDialog>
+#include <QThread>
+#include <QTimer>
+#include <QDesktopServices>
+
+
+
 
 
 #include <QProcess>

@@ -18,7 +18,7 @@ AllImpayes::AllImpayes(QWidget *parent) :
         QString id_client=qr.value("client").toString();
 
         QSqlQuery qr2;
-        qr2.exec("select * from clients where id='"+id_client+"'");
+        qr2.exec("select * from clients where token_id='"+id_client+"'");
         QString nom_client="";
         if(qr2.next()){
             nom_client=qr2.value("nom").toString();

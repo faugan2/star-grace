@@ -22,6 +22,8 @@ private slots:
 private:
     Ui::InfoStockAlerte *ui;
     QString id_produit;
+    QString id_pv;
+    QString id_format;
 };
 
 #endif // INFOSTOCKALERTE_H

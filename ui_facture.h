@@ -29,6 +29,8 @@ class Ui_Facture
 {
 public:
     QVBoxLayout *verticalLayout_6;
+    QLabel *banner;
+    QGroupBox *text_header;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QLabel *label_header1;
@@ -36,6 +38,7 @@ public:
     QLabel *label_header_3;
     QLabel *label_header_4;
     QLabel *label_header_5;
+    QLabel *label_pv;
     QLabel *label_header_6;
     QSpacerItem *horizontalSpacer_3;
     QGroupBox *groupBox;
@@ -44,6 +47,12 @@ public:
     QLabel *label_nom_client;
     QLabel *label_contact_client;
     QSpacerItem *verticalSpacer_3;
+    QHBoxLayout *horizontalLayout_5;
+    QSpacerItem *horizontalSpacer;
+    QGroupBox *groupe_client2;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *client_2;
+    QSpacerItem *horizontalSpacer_4;
     QHBoxLayout *horizontalLayout_3;
     QGroupBox *groupBox_3;
     QHBoxLayout *horizontalLayout_2;
@@ -59,6 +68,7 @@ public:
     QLabel *label_21;
     QLabel *heure;
     QTableWidget *tableWidget;
+    QSpacerItem *verticalSpacer_4;
     QGroupBox *groupBox_4;
     QVBoxLayout *verticalLayout_5;
     QHBoxLayout *horizontalLayout_4;
@@ -76,22 +86,28 @@ public:
     QLabel *tva;
     QLabel *label_29;
     QLabel *total_ttc;
-    QSpacerItem *verticalSpacer;
 
     void setupUi(QDialog *Facture)
     {
         if (Facture->objectName().isEmpty())
             Facture->setObjectName(QStringLiteral("Facture"));
-        Facture->resize(741, 356);
+        Facture->resize(787, 815);
         Facture->setMinimumSize(QSize(0, 0));
         Facture->setStyleSheet(QStringLiteral("background-color:white;"));
         verticalLayout_6 = new QVBoxLayout(Facture);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        horizontalLayout = new QHBoxLayout();
+        banner = new QLabel(Facture);
+        banner->setObjectName(QStringLiteral("banner"));
+
+        verticalLayout_6->addWidget(banner);
+
+        text_header = new QGroupBox(Facture);
+        text_header->setObjectName(QStringLiteral("text_header"));
+        horizontalLayout = new QHBoxLayout(text_header);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        label_header1 = new QLabel(Facture);
+        label_header1 = new QLabel(text_header);
         label_header1->setObjectName(QStringLiteral("label_header1"));
         label_header1->setMinimumSize(QSize(0, 0));
         label_header1->setMaximumSize(QSize(16777215, 16777215));
@@ -100,27 +116,32 @@ public:
 
         verticalLayout->addWidget(label_header1);
 
-        label_header_2 = new QLabel(Facture);
+        label_header_2 = new QLabel(text_header);
         label_header_2->setObjectName(QStringLiteral("label_header_2"));
 
         verticalLayout->addWidget(label_header_2);
 
-        label_header_3 = new QLabel(Facture);
+        label_header_3 = new QLabel(text_header);
         label_header_3->setObjectName(QStringLiteral("label_header_3"));
 
         verticalLayout->addWidget(label_header_3);
 
-        label_header_4 = new QLabel(Facture);
+        label_header_4 = new QLabel(text_header);
         label_header_4->setObjectName(QStringLiteral("label_header_4"));
 
         verticalLayout->addWidget(label_header_4);
 
-        label_header_5 = new QLabel(Facture);
+        label_header_5 = new QLabel(text_header);
         label_header_5->setObjectName(QStringLiteral("label_header_5"));
 
         verticalLayout->addWidget(label_header_5);
 
-        label_header_6 = new QLabel(Facture);
+        label_pv = new QLabel(text_header);
+        label_pv->setObjectName(QStringLiteral("label_pv"));
+
+        verticalLayout->addWidget(label_pv);
+
+        label_header_6 = new QLabel(text_header);
         label_header_6->setObjectName(QStringLiteral("label_header_6"));
 
         verticalLayout->addWidget(label_header_6);
@@ -132,8 +153,9 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_3);
 
-        groupBox = new QGroupBox(Facture);
+        groupBox = new QGroupBox(text_header);
         groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setFlat(false);
         verticalLayout_2 = new QVBoxLayout(groupBox);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         label_header_7 = new QLabel(groupBox);
@@ -168,7 +190,32 @@ public:
         horizontalLayout->addWidget(groupBox);
 
 
-        verticalLayout_6->addLayout(horizontalLayout);
+        verticalLayout_6->addWidget(text_header);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer);
+
+        groupe_client2 = new QGroupBox(Facture);
+        groupe_client2->setObjectName(QStringLiteral("groupe_client2"));
+        verticalLayout_3 = new QVBoxLayout(groupe_client2);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        client_2 = new QLabel(groupe_client2);
+        client_2->setObjectName(QStringLiteral("client_2"));
+
+        verticalLayout_3->addWidget(client_2);
+
+
+        horizontalLayout_5->addWidget(groupe_client2);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_4);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_5);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
@@ -246,8 +293,8 @@ public:
         verticalLayout_6->addLayout(horizontalLayout_3);
 
         tableWidget = new QTableWidget(Facture);
-        if (tableWidget->columnCount() < 7)
-            tableWidget->setColumnCount(7);
+        if (tableWidget->columnCount() < 6)
+            tableWidget->setColumnCount(6);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
@@ -260,10 +307,9 @@ public:
         tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
-        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setMinimumSize(QSize(0, 150));
+        tableWidget->setMinimumSize(QSize(0, 380));
+        tableWidget->setMaximumSize(QSize(16777215, 16777215));
         tableWidget->setFrameShape(QFrame::NoFrame);
         tableWidget->setLineWidth(0);
         tableWidget->setAlternatingRowColors(true);
@@ -272,6 +318,10 @@ public:
         tableWidget->verticalHeader()->setVisible(false);
 
         verticalLayout_6->addWidget(tableWidget);
+
+        verticalSpacer_4 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_6->addItem(verticalSpacer_4);
 
         groupBox_4 = new QGroupBox(Facture);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
@@ -286,6 +336,7 @@ public:
         label_18->setStyleSheet(QLatin1String("font-size:12px;\n"
 "font-weight:bold;\n"
 "font-style:italic;"));
+        label_18->setWordWrap(true);
 
         verticalLayout_4->addWidget(label_18);
 
@@ -297,6 +348,7 @@ public:
         label_30->setObjectName(QStringLiteral("label_30"));
         label_30->setStyleSheet(QLatin1String("font-size:10px;\n"
 "font-weight:bold;"));
+        label_30->setWordWrap(true);
 
         verticalLayout_4->addWidget(label_30);
 
@@ -305,8 +357,8 @@ public:
 
         formGroupBox = new QGroupBox(groupBox_4);
         formGroupBox->setObjectName(QStringLiteral("formGroupBox"));
-        formGroupBox->setMinimumSize(QSize(300, 0));
-        formGroupBox->setMaximumSize(QSize(300, 16777215));
+        formGroupBox->setMinimumSize(QSize(250, 0));
+        formGroupBox->setMaximumSize(QSize(250, 16777215));
         formGroupBox->setFlat(false);
         formLayout = new QFormLayout(formGroupBox);
         formLayout->setObjectName(QStringLiteral("formLayout"));
@@ -380,10 +432,10 @@ public:
 
         verticalLayout_6->addWidget(groupBox_4);
 
-        verticalSpacer = new QSpacerItem(20, 29, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_6->addItem(verticalSpacer);
-
+        text_header->raise();
+        tableWidget->raise();
+        groupBox_4->raise();
+        banner->raise();
 
         retranslateUi(Facture);
 
@@ -393,16 +445,20 @@ public:
     void retranslateUi(QDialog *Facture)
     {
         Facture->setWindowTitle(QApplication::translate("Facture", "Dialog", 0));
+        banner->setText(QString());
         label_header1->setText(QApplication::translate("Facture", "STAR GRACE", 0));
         label_header_2->setText(QApplication::translate("Facture", "Commerce G\303\251n\303\251rale Import - Export", 0));
         label_header_3->setText(QApplication::translate("Facture", "Vente de mat\303\251riaux de constructions", 0));
         label_header_4->setText(QApplication::translate("Facture", "Plomberie, carreaux, granito, baguette & divers", 0));
         label_header_5->setText(QApplication::translate("Facture", "Tel: 99 74 00 74 / 90 28 10 32", 0));
+        label_pv->setText(QApplication::translate("Facture", "TextLabel", 0));
         label_header_6->setText(QApplication::translate("Facture", "LOME - TOGO", 0));
         groupBox->setTitle(QString());
         label_header_7->setText(QApplication::translate("Facture", "CLIENT ", 0));
         label_nom_client->setText(QApplication::translate("Facture", "NOM DU CLIENT", 0));
         label_contact_client->setText(QApplication::translate("Facture", "CONTACT DU CLIENT", 0));
+        groupe_client2->setTitle(QApplication::translate("Facture", "CLIENT", 0));
+        client_2->setText(QString());
         groupBox_3->setTitle(QString());
         label_10->setText(QApplication::translate("Facture", "FACTURE", 0));
         label_11->setText(QApplication::translate("Facture", "N\302\260  : ", 0));
@@ -415,7 +471,7 @@ public:
         label_21->setText(QString());
         heure->setText(QApplication::translate("Facture", "13 :31:42", 0));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("Facture", "REFERENCE", 0));
+        ___qtablewidgetitem->setText(QApplication::translate("Facture", "Format", 0));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QApplication::translate("Facture", "DESIGNATION", 0));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
@@ -426,16 +482,14 @@ public:
         ___qtablewidgetitem4->setText(QApplication::translate("Facture", "Prix Unitaire", 0));
         QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
         ___qtablewidgetitem5->setText(QApplication::translate("Facture", "Montant Total", 0));
-        QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QApplication::translate("Facture", "EMBALLAGE", 0));
         groupBox_4->setTitle(QString());
-        label_18->setText(QApplication::translate("Facture", "Arr\303\252t\303\251 la pr\303\251sente facture \303\240 la somme de cent cinq mille francs cfa", 0));
+        label_18->setText(QApplication::translate("Facture", "Arr\303\252t\303\251 la pr\303\251sente facture \303\240 a somme de cent cinq mille francs cfa", 0));
         label_30->setText(QApplication::translate("Facture", "NB : Les marchandises vendues ne sont ni reprises ni \303\251chang\303\251es. merci pour votre Achat", 0));
         label_22->setText(QApplication::translate("Facture", "Total HT ( F CFA )", 0));
         total_ht->setText(QApplication::translate("Facture", "0", 0));
         label_23->setText(QApplication::translate("Facture", "Total Remise ( F CFA )", 0));
         remise->setText(QApplication::translate("Facture", "0", 0));
-        label_24->setText(QApplication::translate("Facture", "Total TVA ( F CFA )", 0));
+        label_24->setText(QApplication::translate("Facture", "Total Impay\303\251 ( F CFA )", 0));
         tva->setText(QApplication::translate("Facture", "0", 0));
         label_29->setText(QApplication::translate("Facture", "Total TTC ( F CFA )", 0));
         total_ttc->setText(QApplication::translate("Facture", "0", 0));

@@ -29,6 +29,12 @@ INPUT(
 ./debug\allprepayement.o
 ./debug\facture.o
 ./debug\bon.o
+./debug\clientprepayement.o
+./debug\synchronisation.o
+./debug\loading.o
+./debug\printtransferts.o
+./debug\apercufactur.o
+./debug\apercufacturewithtoken.o
 ./debug\qrc_img.o
 ./debug\moc_mainwindow.o
 ./debug\moc_login.o
@@ -59,4 +65,10 @@ INPUT(
 ./debug\moc_allprepayement.o
 ./debug\moc_facture.o
 ./debug\moc_bon.o
+./debug\moc_clientprepayement.o
+./debug\moc_synchronisation.o
+./debug\moc_loading.o
+./debug\moc_printtransferts.o
+./debug\moc_apercufactur.o
+./debug\moc_apercufacturewithtoken.o
 );

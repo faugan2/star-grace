@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Login_t {
-    QByteArrayData data[9];
-    char stringdata[114];
+    QByteArrayData data[12];
+    char stringdata[162];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,11 +37,16 @@ QT_MOC_LITERAL(4, 38, 14),
 QT_MOC_LITERAL(5, 53, 3),
 QT_MOC_LITERAL(6, 57, 26),
 QT_MOC_LITERAL(7, 84, 4),
-QT_MOC_LITERAL(8, 89, 23)
+QT_MOC_LITERAL(8, 89, 23),
+QT_MOC_LITERAL(9, 113, 26),
+QT_MOC_LITERAL(10, 140, 8),
+QT_MOC_LITERAL(11, 149, 11)
     },
     "Login\0on_pushButton_clicked\0\0onfinish\0"
     "QNetworkReply*\0rep\0on_identifiant_textChanged\0"
     "arg1\0on_password_textChanged\0"
+    "on_serveur_distant_clicked\0close_db\0"
+    "load_server\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -51,7 +56,7 @@ static const uint qt_meta_data_Login[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -59,16 +64,22 @@ static const uint qt_meta_data_Login[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x08,
-       3,    1,   35,    2, 0x08,
-       6,    1,   38,    2, 0x08,
-       8,    1,   41,    2, 0x08,
+       1,    0,   49,    2, 0x08,
+       3,    1,   50,    2, 0x08,
+       6,    1,   53,    2, 0x08,
+       8,    1,   56,    2, 0x08,
+       9,    0,   59,    2, 0x08,
+      10,    0,   60,    2, 0x08,
+      11,    0,   61,    2, 0x08,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 4,    5,
     QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -82,6 +93,9 @@ void Login::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         case 1: _t->onfinish((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         case 2: _t->on_identifiant_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 3: _t->on_password_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 4: _t->on_serveur_distant_clicked(); break;
+        case 5: _t->close_db(); break;
+        case 6: _t->load_server(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -123,13 +137,13 @@ int Login::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 7;
     }
     return _id;
 }

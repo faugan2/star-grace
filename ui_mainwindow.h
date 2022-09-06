@@ -16,6 +16,7 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -26,6 +27,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
@@ -58,6 +60,8 @@ public:
     QAction *actionAlertes;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout_2;
+    QLabel *user_name;
+    QLabel *user_pv;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QGroupBox *block_points_vente;
@@ -67,9 +71,22 @@ public:
     QComboBox *utilisateur_recette;
     QTableWidget *table_recette;
     QHBoxLayout *horizontalLayout_15;
-    QLabel *total_recette;
+    QLabel *label_16;
     QSpacerItem *horizontalSpacer_7;
+    QLabel *total_recette;
+    QHBoxLayout *horizontalLayout_21;
+    QLabel *label_11;
+    QSpacerItem *horizontalSpacer_11;
+    QLabel *total_depense;
+    QHBoxLayout *horizontalLayout_22;
+    QLabel *label_15;
+    QSpacerItem *horizontalSpacer_12;
+    QLabel *total_retrait;
+    QHBoxLayout *horizontalLayout_23;
     QPushButton *pushButton_5;
+    QSpacerItem *horizontalSpacer_13;
+    QLabel *reste_recette;
+    QSpacerItem *verticalSpacer_3;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_15;
@@ -112,9 +129,12 @@ public:
     QHBoxLayout *horizontalLayout_16;
     QLabel *label_6;
     QSpacerItem *horizontalSpacer_6;
+    QRadioButton *affichage_m2;
+    QRadioButton *affichage_cartons;
+    QRadioButton *affichage_pieces;
     QPushButton *pushButton_2;
     QGroupBox *groupBox_4;
-    QVBoxLayout *verticalLayout_18;
+    QVBoxLayout *verticalLayout_19;
     QHBoxLayout *horizontalLayout_13;
     QVBoxLayout *verticalLayout_8;
     QLabel *label_7;
@@ -139,22 +159,38 @@ public:
     QLineEdit *total;
     QHBoxLayout *horizontalLayout_12;
     QLineEdit *calcul;
+    QPushButton *pushButton_13;
+    QPushButton *pushButton_14;
     QHBoxLayout *horizontalLayout_7;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButton_3;
+    QGroupBox *groupBox;
+    QHBoxLayout *horizontalLayout_24;
+    QPushButton *nb_cartons;
+    QPushButton *nb_m2;
+    QPushButton *nb_pieces;
     QTableWidget *table_vente;
+    QHBoxLayout *horizontalLayout_19;
+    QSpacerItem *horizontalSpacer_10;
+    QPushButton *pushButton_4;
+    QPushButton *btn_apercu;
     QHBoxLayout *horizontalLayout_8;
     QSpacerItem *horizontalSpacer_5;
     QLabel *total_facture;
+    QHBoxLayout *horizontalLayout_18;
+    QSpacerItem *horizontalSpacer_9;
+    QLabel *label_remise;
+    QSpacerItem *verticalSpacer_4;
     QHBoxLayout *horizontalLayout_4;
     QComboBox *list_clients;
     QPushButton *pushButton_10;
     QPushButton *pushButton;
-    QSpacerItem *verticalSpacer_4;
-    QHBoxLayout *horizontalLayout_9;
+    QHBoxLayout *horizontalLayout_20;
+    QVBoxLayout *verticalLayout_18;
+    QCheckBox *non_livre;
     QCheckBox *bon;
+    QHBoxLayout *horizontalLayout_9;
     QSpacerItem *horizontalSpacer_4;
-    QPushButton *pushButton_4;
     QPushButton *pushButton_11;
     QPushButton *pushButton_7;
     QPushButton *pushButton_8;
@@ -164,11 +200,16 @@ public:
     QGroupBox *stock_alerte;
     QGroupBox *list_prepaye;
     QGroupBox *impayes;
+    QHBoxLayout *horizontalLayout_17;
+    QSpacerItem *horizontalSpacer_3;
+    QCheckBox *serveur_distant;
+    QFrame *line;
+    QPushButton *pushButton_12;
+    QSpacerItem *horizontalSpacer_8;
     QMenuBar *menuBar;
     QMenu *menuFichier;
     QMenu *menuPoints_de_vente;
     QMenu *menuStock;
-    QMenu *menuCarreaux;
     QMenu *menuSynchronisation;
     QMenu *menuUtilisateurs;
     QMenu *menuClients;
@@ -179,7 +220,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1083, 680);
+        MainWindow->resize(1083, 690);
         QIcon icon;
         icon.addFile(QStringLiteral(":/img/logo-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -201,7 +242,7 @@ public:
         actionDeconnexion = new QAction(MainWindow);
         actionDeconnexion->setObjectName(QStringLiteral("actionDeconnexion"));
         QIcon icon2;
-        icon2.addFile(QStringLiteral(":/img/images/password.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon2.addFile(QStringLiteral(":/img/images/logout.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionDeconnexion->setIcon(icon2);
         actionFermer = new QAction(MainWindow);
         actionFermer->setObjectName(QStringLiteral("actionFermer"));
@@ -223,16 +264,19 @@ public:
         QIcon icon6;
         icon6.addFile(QStringLiteral(":/img/images/cloud-upload-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
         actionSynchroniser_les_donn_es->setIcon(icon6);
+        actionSynchroniser_les_donn_es->setVisible(true);
         actionSauvegarder_la_base_de_donn_es = new QAction(MainWindow);
         actionSauvegarder_la_base_de_donn_es->setObjectName(QStringLiteral("actionSauvegarder_la_base_de_donn_es"));
         QIcon icon7;
         icon7.addFile(QStringLiteral(":/img/images/server-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
         actionSauvegarder_la_base_de_donn_es->setIcon(icon7);
+        actionSauvegarder_la_base_de_donn_es->setVisible(false);
         actionRestaurer_la_base_de_donn_es = new QAction(MainWindow);
         actionRestaurer_la_base_de_donn_es->setObjectName(QStringLiteral("actionRestaurer_la_base_de_donn_es"));
         QIcon icon8;
         icon8.addFile(QStringLiteral(":/img/images/cloud-download-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
         actionRestaurer_la_base_de_donn_es->setIcon(icon8);
+        actionRestaurer_la_base_de_donn_es->setVisible(false);
         actionListe_des_utilisateurs = new QAction(MainWindow);
         actionListe_des_utilisateurs->setObjectName(QStringLiteral("actionListe_des_utilisateurs"));
         QIcon icon9;
@@ -273,6 +317,20 @@ public:
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        user_name = new QLabel(centralWidget);
+        user_name->setObjectName(QStringLiteral("user_name"));
+        user_name->setStyleSheet(QLatin1String("font-weight:bold;\n"
+"font-size:16px;"));
+        user_name->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_2->addWidget(user_name);
+
+        user_pv = new QLabel(centralWidget);
+        user_pv->setObjectName(QStringLiteral("user_pv"));
+        user_pv->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_2->addWidget(user_pv);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -281,7 +339,7 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         block_points_vente = new QGroupBox(centralWidget);
         block_points_vente->setObjectName(QStringLiteral("block_points_vente"));
-        block_points_vente->setMinimumSize(QSize(0, 300));
+        block_points_vente->setMinimumSize(QSize(0, 250));
         block_points_vente->setMaximumSize(QSize(300, 16777215));
         block_points_vente->setStyleSheet(QStringLiteral(""));
         verticalLayout_4 = new QVBoxLayout(block_points_vente);
@@ -314,8 +372,10 @@ public:
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
         table_recette->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         table_recette->setObjectName(QStringLiteral("table_recette"));
+        table_recette->setMinimumSize(QSize(0, 120));
         table_recette->setFrameShape(QFrame::NoFrame);
         table_recette->setAlternatingRowColors(true);
+        table_recette->setSelectionBehavior(QAbstractItemView::SelectRows);
         table_recette->setGridStyle(Qt::DashDotDotLine);
         table_recette->horizontalHeader()->setStretchLastSection(true);
         table_recette->verticalHeader()->setVisible(false);
@@ -325,29 +385,99 @@ public:
         horizontalLayout_15 = new QHBoxLayout();
         horizontalLayout_15->setSpacing(6);
         horizontalLayout_15->setObjectName(QStringLiteral("horizontalLayout_15"));
+        label_16 = new QLabel(block_points_vente);
+        label_16->setObjectName(QStringLiteral("label_16"));
+        label_16->setStyleSheet(QStringLiteral("font-weight:bold;"));
+
+        horizontalLayout_15->addWidget(label_16);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_15->addItem(horizontalSpacer_7);
+
         total_recette = new QLabel(block_points_vente);
         total_recette->setObjectName(QStringLiteral("total_recette"));
         total_recette->setStyleSheet(QStringLiteral("font-weight:bold;"));
 
         horizontalLayout_15->addWidget(total_recette);
 
-        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_15->addItem(horizontalSpacer_7);
+        verticalLayout_4->addLayout(horizontalLayout_15);
 
+        horizontalLayout_21 = new QHBoxLayout();
+        horizontalLayout_21->setSpacing(6);
+        horizontalLayout_21->setObjectName(QStringLiteral("horizontalLayout_21"));
+        label_11 = new QLabel(block_points_vente);
+        label_11->setObjectName(QStringLiteral("label_11"));
+        label_11->setStyleSheet(QStringLiteral("font-weight:bold;"));
+
+        horizontalLayout_21->addWidget(label_11);
+
+        horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_21->addItem(horizontalSpacer_11);
+
+        total_depense = new QLabel(block_points_vente);
+        total_depense->setObjectName(QStringLiteral("total_depense"));
+        total_depense->setStyleSheet(QStringLiteral("font-weight:bold;"));
+
+        horizontalLayout_21->addWidget(total_depense);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_21);
+
+        horizontalLayout_22 = new QHBoxLayout();
+        horizontalLayout_22->setSpacing(6);
+        horizontalLayout_22->setObjectName(QStringLiteral("horizontalLayout_22"));
+        label_15 = new QLabel(block_points_vente);
+        label_15->setObjectName(QStringLiteral("label_15"));
+        label_15->setStyleSheet(QStringLiteral("font-weight:bold;"));
+
+        horizontalLayout_22->addWidget(label_15);
+
+        horizontalSpacer_12 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_22->addItem(horizontalSpacer_12);
+
+        total_retrait = new QLabel(block_points_vente);
+        total_retrait->setObjectName(QStringLiteral("total_retrait"));
+        total_retrait->setStyleSheet(QStringLiteral("font-weight:bold;"));
+
+        horizontalLayout_22->addWidget(total_retrait);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_22);
+
+        horizontalLayout_23 = new QHBoxLayout();
+        horizontalLayout_23->setSpacing(6);
+        horizontalLayout_23->setObjectName(QStringLiteral("horizontalLayout_23"));
         pushButton_5 = new QPushButton(block_points_vente);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setStyleSheet(QLatin1String("background-color:white;\n"
 "border:none;\n"
-"padding:5px;"));
+"padding:4px;"));
         QIcon icon15;
         icon15.addFile(QStringLiteral(":/img/images/imprimer.png"), QSize(), QIcon::Normal, QIcon::Off);
         pushButton_5->setIcon(icon15);
 
-        horizontalLayout_15->addWidget(pushButton_5);
+        horizontalLayout_23->addWidget(pushButton_5);
+
+        horizontalSpacer_13 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_23->addItem(horizontalSpacer_13);
+
+        reste_recette = new QLabel(block_points_vente);
+        reste_recette->setObjectName(QStringLiteral("reste_recette"));
+        reste_recette->setStyleSheet(QStringLiteral("font-weight:bold;"));
+
+        horizontalLayout_23->addWidget(reste_recette);
 
 
-        verticalLayout_4->addLayout(horizontalLayout_15);
+        verticalLayout_4->addLayout(horizontalLayout_23);
+
+        verticalSpacer_3 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_3);
 
         scrollArea = new QScrollArea(block_points_vente);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
@@ -419,7 +549,7 @@ public:
 
         groupBox_2 = new QGroupBox(centralWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setMinimumSize(QSize(0, 200));
+        groupBox_2->setMinimumSize(QSize(0, 160));
         groupBox_2->setMaximumSize(QSize(300, 16777215));
         verticalLayout_5 = new QVBoxLayout(groupBox_2);
         verticalLayout_5->setSpacing(6);
@@ -437,7 +567,7 @@ public:
         QIcon icon17;
         icon17.addFile(QStringLiteral(":/img/images/swap-horizontal-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_12->setIcon(icon17);
-        toolButton_12->setIconSize(QSize(54, 54));
+        toolButton_12->setIconSize(QSize(36, 36));
         toolButton_12->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         gridLayout->addWidget(toolButton_12, 0, 0, 1, 1);
@@ -451,7 +581,7 @@ public:
         QIcon icon18;
         icon18.addFile(QStringLiteral(":/img/images/logo-euro.svg"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_13->setIcon(icon18);
-        toolButton_13->setIconSize(QSize(54, 54));
+        toolButton_13->setIconSize(QSize(36, 36));
         toolButton_13->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         gridLayout->addWidget(toolButton_13, 0, 1, 1, 1);
@@ -465,7 +595,7 @@ public:
         QIcon icon19;
         icon19.addFile(QStringLiteral(":/img/images/qr-code-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_10->setIcon(icon19);
-        toolButton_10->setIconSize(QSize(54, 54));
+        toolButton_10->setIconSize(QSize(36, 36));
         toolButton_10->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         gridLayout->addWidget(toolButton_10, 1, 0, 1, 1);
@@ -479,7 +609,7 @@ public:
         QIcon icon20;
         icon20.addFile(QStringLiteral(":/img/images/warning-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton_11->setIcon(icon20);
-        toolButton_11->setIconSize(QSize(54, 54));
+        toolButton_11->setIconSize(QSize(36, 36));
         toolButton_11->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
         gridLayout->addWidget(toolButton_11, 1, 1, 1, 1);
@@ -628,8 +758,8 @@ public:
         verticalLayout_11->addLayout(horizontalLayout_3);
 
         table_inventaire = new QTableWidget(groupBox_3);
-        if (table_inventaire->columnCount() < 7)
-            table_inventaire->setColumnCount(7);
+        if (table_inventaire->columnCount() < 8)
+            table_inventaire->setColumnCount(8);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         table_inventaire->setHorizontalHeaderItem(0, __qtablewidgetitem2);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
@@ -644,12 +774,17 @@ public:
         table_inventaire->setHorizontalHeaderItem(5, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
         table_inventaire->setHorizontalHeaderItem(6, __qtablewidgetitem8);
+        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        table_inventaire->setHorizontalHeaderItem(7, __qtablewidgetitem9);
         table_inventaire->setObjectName(QStringLiteral("table_inventaire"));
+        table_inventaire->setEnabled(true);
         table_inventaire->setAutoFillBackground(true);
         table_inventaire->setFrameShape(QFrame::NoFrame);
         table_inventaire->setAutoScroll(false);
         table_inventaire->setAlternatingRowColors(true);
+        table_inventaire->setSelectionBehavior(QAbstractItemView::SelectRows);
         table_inventaire->setGridStyle(Qt::DashDotDotLine);
+        table_inventaire->setSortingEnabled(true);
         table_inventaire->horizontalHeader()->setStretchLastSection(true);
         table_inventaire->verticalHeader()->setVisible(false);
         table_inventaire->verticalHeader()->setStretchLastSection(false);
@@ -670,6 +805,22 @@ public:
         horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_16->addItem(horizontalSpacer_6);
+
+        affichage_m2 = new QRadioButton(groupBox_3);
+        affichage_m2->setObjectName(QStringLiteral("affichage_m2"));
+        affichage_m2->setChecked(true);
+
+        horizontalLayout_16->addWidget(affichage_m2);
+
+        affichage_cartons = new QRadioButton(groupBox_3);
+        affichage_cartons->setObjectName(QStringLiteral("affichage_cartons"));
+
+        horizontalLayout_16->addWidget(affichage_cartons);
+
+        affichage_pieces = new QRadioButton(groupBox_3);
+        affichage_pieces->setObjectName(QStringLiteral("affichage_pieces"));
+
+        horizontalLayout_16->addWidget(affichage_pieces);
 
         pushButton_2 = new QPushButton(groupBox_3);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
@@ -692,10 +843,10 @@ public:
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
         groupBox_4->setMinimumSize(QSize(300, 0));
         groupBox_4->setMaximumSize(QSize(300, 16777215));
-        verticalLayout_18 = new QVBoxLayout(groupBox_4);
-        verticalLayout_18->setSpacing(6);
-        verticalLayout_18->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_18->setObjectName(QStringLiteral("verticalLayout_18"));
+        verticalLayout_19 = new QVBoxLayout(groupBox_4);
+        verticalLayout_19->setSpacing(6);
+        verticalLayout_19->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_19->setObjectName(QStringLiteral("verticalLayout_19"));
         horizontalLayout_13 = new QHBoxLayout();
         horizontalLayout_13->setSpacing(6);
         horizontalLayout_13->setObjectName(QStringLiteral("horizontalLayout_13"));
@@ -760,7 +911,7 @@ public:
         horizontalLayout_13->addLayout(verticalLayout_16);
 
 
-        verticalLayout_18->addLayout(horizontalLayout_13);
+        verticalLayout_19->addLayout(horizontalLayout_13);
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
@@ -809,8 +960,8 @@ public:
 
         pu = new QLineEdit(groupBox_4);
         pu->setObjectName(QStringLiteral("pu"));
-        pu->setEnabled(false);
-        pu->setReadOnly(true);
+        pu->setEnabled(true);
+        pu->setReadOnly(false);
 
         verticalLayout_9->addWidget(pu);
 
@@ -839,7 +990,7 @@ public:
         horizontalLayout_6->addLayout(verticalLayout_13);
 
 
-        verticalLayout_18->addLayout(horizontalLayout_6);
+        verticalLayout_19->addLayout(horizontalLayout_6);
 
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setSpacing(6);
@@ -847,11 +998,33 @@ public:
         calcul = new QLineEdit(groupBox_4);
         calcul->setObjectName(QStringLiteral("calcul"));
         calcul->setEnabled(false);
-        calcul->setMinimumSize(QSize(200, 0));
+        calcul->setMinimumSize(QSize(150, 0));
         calcul->setStyleSheet(QStringLiteral("width:70%;"));
         calcul->setReadOnly(true);
 
         horizontalLayout_12->addWidget(calcul);
+
+        pushButton_13 = new QPushButton(groupBox_4);
+        pushButton_13->setObjectName(QStringLiteral("pushButton_13"));
+        pushButton_13->setMaximumSize(QSize(20, 16777215));
+        pushButton_13->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_13->setStyleSheet(QLatin1String("background-color:white;\n"
+"padding:5px;\n"
+"border:none;\n"
+""));
+
+        horizontalLayout_12->addWidget(pushButton_13);
+
+        pushButton_14 = new QPushButton(groupBox_4);
+        pushButton_14->setObjectName(QStringLiteral("pushButton_14"));
+        pushButton_14->setMaximumSize(QSize(20, 16777215));
+        pushButton_14->setCursor(QCursor(Qt::PointingHandCursor));
+        pushButton_14->setStyleSheet(QLatin1String("background-color:white;\n"
+"padding:5px;\n"
+"border:none;\n"
+""));
+
+        horizontalLayout_12->addWidget(pushButton_14);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
@@ -862,10 +1035,12 @@ public:
 
         pushButton_3 = new QPushButton(groupBox_4);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_3->setStyleSheet(QLatin1String("border:none;\n"
 "padding:8px;\n"
-"background-color:white;\n"
-""));
+"background-color:indianred;\n"
+"color:white;\n"
+"border-radius:3px;"));
 
         horizontalLayout_7->addWidget(pushButton_3);
 
@@ -873,17 +1048,59 @@ public:
         horizontalLayout_12->addLayout(horizontalLayout_7);
 
 
-        verticalLayout_18->addLayout(horizontalLayout_12);
+        verticalLayout_19->addLayout(horizontalLayout_12);
+
+        groupBox = new QGroupBox(groupBox_4);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setEnabled(false);
+        groupBox->setMaximumSize(QSize(16777215, 16777215));
+        groupBox->setAutoFillBackground(false);
+        groupBox->setStyleSheet(QLatin1String("padding:0;\n"
+"padding-top:3px;"));
+        groupBox->setFlat(true);
+        horizontalLayout_24 = new QHBoxLayout(groupBox);
+        horizontalLayout_24->setSpacing(6);
+        horizontalLayout_24->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_24->setObjectName(QStringLiteral("horizontalLayout_24"));
+        nb_cartons = new QPushButton(groupBox);
+        nb_cartons->setObjectName(QStringLiteral("nb_cartons"));
+        nb_cartons->setEnabled(false);
+        nb_cartons->setStyleSheet(QLatin1String("border:none;\n"
+"background-color:white;\n"
+""));
+
+        horizontalLayout_24->addWidget(nb_cartons);
+
+        nb_m2 = new QPushButton(groupBox);
+        nb_m2->setObjectName(QStringLiteral("nb_m2"));
+        nb_m2->setEnabled(false);
+        nb_m2->setStyleSheet(QLatin1String("border:none;\n"
+"background-color:white;\n"
+""));
+
+        horizontalLayout_24->addWidget(nb_m2);
+
+        nb_pieces = new QPushButton(groupBox);
+        nb_pieces->setObjectName(QStringLiteral("nb_pieces"));
+        nb_pieces->setEnabled(false);
+        nb_pieces->setStyleSheet(QLatin1String("border:none;\n"
+"background-color:white;\n"
+""));
+
+        horizontalLayout_24->addWidget(nb_pieces);
+
+
+        verticalLayout_19->addWidget(groupBox);
 
         table_vente = new QTableWidget(groupBox_4);
         if (table_vente->columnCount() < 3)
             table_vente->setColumnCount(3);
-        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
-        table_vente->setHorizontalHeaderItem(0, __qtablewidgetitem9);
         QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
-        table_vente->setHorizontalHeaderItem(1, __qtablewidgetitem10);
+        table_vente->setHorizontalHeaderItem(0, __qtablewidgetitem10);
         QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
-        table_vente->setHorizontalHeaderItem(2, __qtablewidgetitem11);
+        table_vente->setHorizontalHeaderItem(1, __qtablewidgetitem11);
+        QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
+        table_vente->setHorizontalHeaderItem(2, __qtablewidgetitem12);
         table_vente->setObjectName(QStringLiteral("table_vente"));
         table_vente->setEnabled(true);
         table_vente->setMaximumSize(QSize(16777215, 110));
@@ -891,13 +1108,44 @@ public:
         table_vente->setLineWidth(0);
         table_vente->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         table_vente->setAlternatingRowColors(true);
+        table_vente->setSelectionBehavior(QAbstractItemView::SelectRows);
         table_vente->setShowGrid(true);
         table_vente->setGridStyle(Qt::DashDotDotLine);
         table_vente->horizontalHeader()->setStretchLastSection(true);
         table_vente->verticalHeader()->setVisible(false);
         table_vente->verticalHeader()->setStretchLastSection(false);
 
-        verticalLayout_18->addWidget(table_vente);
+        verticalLayout_19->addWidget(table_vente);
+
+        horizontalLayout_19 = new QHBoxLayout();
+        horizontalLayout_19->setSpacing(6);
+        horizontalLayout_19->setObjectName(QStringLiteral("horizontalLayout_19"));
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_19->addItem(horizontalSpacer_10);
+
+        pushButton_4 = new QPushButton(groupBox_4);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setEnabled(true);
+        pushButton_4->setStyleSheet(QLatin1String("background-color:white;\n"
+"border:none;\n"
+"padding:5px;"));
+        QIcon icon21;
+        icon21.addFile(QStringLiteral(":/img/images/trash-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_4->setIcon(icon21);
+
+        horizontalLayout_19->addWidget(pushButton_4);
+
+        btn_apercu = new QPushButton(groupBox_4);
+        btn_apercu->setObjectName(QStringLiteral("btn_apercu"));
+        btn_apercu->setStyleSheet(QLatin1String("padding:8px;\n"
+"border:none;\n"
+"background-color:white;"));
+
+        horizontalLayout_19->addWidget(btn_apercu);
+
+
+        verticalLayout_19->addLayout(horizontalLayout_19);
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setSpacing(6);
@@ -916,7 +1164,30 @@ public:
         horizontalLayout_8->addWidget(total_facture);
 
 
-        verticalLayout_18->addLayout(horizontalLayout_8);
+        verticalLayout_19->addLayout(horizontalLayout_8);
+
+        horizontalLayout_18 = new QHBoxLayout();
+        horizontalLayout_18->setSpacing(6);
+        horizontalLayout_18->setObjectName(QStringLiteral("horizontalLayout_18"));
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_18->addItem(horizontalSpacer_9);
+
+        label_remise = new QLabel(groupBox_4);
+        label_remise->setObjectName(QStringLiteral("label_remise"));
+        label_remise->setStyleSheet(QLatin1String("font-size:10px;\n"
+"font-weight:bold;\n"
+"color:black;\n"
+""));
+
+        horizontalLayout_18->addWidget(label_remise);
+
+
+        verticalLayout_19->addLayout(horizontalLayout_18);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_19->addItem(verticalSpacer_4);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
@@ -941,43 +1212,42 @@ public:
         pushButton->setMaximumSize(QSize(30, 30));
         pushButton->setStyleSheet(QLatin1String("background-color:white;\n"
 "border:none;"));
-        QIcon icon21;
-        icon21.addFile(QStringLiteral(":/img/images/add-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton->setIcon(icon21);
+        QIcon icon22;
+        icon22.addFile(QStringLiteral(":/img/images/add-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon22);
 
         horizontalLayout_4->addWidget(pushButton);
 
 
-        verticalLayout_18->addLayout(horizontalLayout_4);
+        verticalLayout_19->addLayout(horizontalLayout_4);
 
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        horizontalLayout_20 = new QHBoxLayout();
+        horizontalLayout_20->setSpacing(6);
+        horizontalLayout_20->setObjectName(QStringLiteral("horizontalLayout_20"));
+        verticalLayout_18 = new QVBoxLayout();
+        verticalLayout_18->setSpacing(6);
+        verticalLayout_18->setObjectName(QStringLiteral("verticalLayout_18"));
+        non_livre = new QCheckBox(groupBox_4);
+        non_livre->setObjectName(QStringLiteral("non_livre"));
+        non_livre->setStyleSheet(QStringLiteral("font-size:10px;"));
 
-        verticalLayout_18->addItem(verticalSpacer_4);
+        verticalLayout_18->addWidget(non_livre);
 
-        horizontalLayout_9 = new QHBoxLayout();
-        horizontalLayout_9->setSpacing(6);
-        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         bon = new QCheckBox(groupBox_4);
         bon->setObjectName(QStringLiteral("bon"));
         bon->setStyleSheet(QStringLiteral("font-size:10px;"));
 
-        horizontalLayout_9->addWidget(bon);
+        verticalLayout_18->addWidget(bon);
 
+
+        horizontalLayout_20->addLayout(verticalLayout_18);
+
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setSpacing(6);
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
         horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_9->addItem(horizontalSpacer_4);
-
-        pushButton_4 = new QPushButton(groupBox_4);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setEnabled(true);
-        pushButton_4->setStyleSheet(QLatin1String("background-color:white;\n"
-"border:none;\n"
-"padding:5px;"));
-        QIcon icon22;
-        icon22.addFile(QStringLiteral(":/img/images/trash-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_4->setIcon(icon22);
-
-        horizontalLayout_9->addWidget(pushButton_4);
 
         pushButton_11 = new QPushButton(groupBox_4);
         pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
@@ -1022,7 +1292,10 @@ public:
         horizontalLayout_9->addWidget(pushButton_6);
 
 
-        verticalLayout_18->addLayout(horizontalLayout_9);
+        horizontalLayout_20->addLayout(horizontalLayout_9);
+
+
+        verticalLayout_19->addLayout(horizontalLayout_20);
 
 
         horizontalLayout->addWidget(groupBox_4);
@@ -1039,7 +1312,7 @@ public:
         horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
         stock_alerte = new QGroupBox(centralWidget);
         stock_alerte->setObjectName(QStringLiteral("stock_alerte"));
-        stock_alerte->setMinimumSize(QSize(0, 60));
+        stock_alerte->setMinimumSize(QSize(0, 95));
         stock_alerte->setMaximumSize(QSize(16777215, 16777215));
 
         horizontalLayout_10->addWidget(stock_alerte);
@@ -1057,6 +1330,43 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_10);
 
+        horizontalLayout_17 = new QHBoxLayout();
+        horizontalLayout_17->setSpacing(6);
+        horizontalLayout_17->setObjectName(QStringLiteral("horizontalLayout_17"));
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_17->addItem(horizontalSpacer_3);
+
+        serveur_distant = new QCheckBox(centralWidget);
+        serveur_distant->setObjectName(QStringLiteral("serveur_distant"));
+        serveur_distant->setEnabled(false);
+
+        horizontalLayout_17->addWidget(serveur_distant);
+
+        line = new QFrame(centralWidget);
+        line->setObjectName(QStringLiteral("line"));
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_17->addWidget(line);
+
+        pushButton_12 = new QPushButton(centralWidget);
+        pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
+        pushButton_12->setEnabled(true);
+        pushButton_12->setStyleSheet(QLatin1String("padding:8px;\n"
+"background-color: green;\n"
+"border:none;\n"
+"color:white;"));
+
+        horizontalLayout_17->addWidget(pushButton_12);
+
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_17->addItem(horizontalSpacer_8);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_17);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -1067,8 +1377,6 @@ public:
         menuPoints_de_vente->setObjectName(QStringLiteral("menuPoints_de_vente"));
         menuStock = new QMenu(menuBar);
         menuStock->setObjectName(QStringLiteral("menuStock"));
-        menuCarreaux = new QMenu(menuStock);
-        menuCarreaux->setObjectName(QStringLiteral("menuCarreaux"));
         menuSynchronisation = new QMenu(menuBar);
         menuSynchronisation->setObjectName(QStringLiteral("menuSynchronisation"));
         menuUtilisateurs = new QMenu(menuBar);
@@ -1094,11 +1402,10 @@ public:
         menuFichier->addAction(actionDeconnexion);
         menuFichier->addAction(actionFermer);
         menuPoints_de_vente->addAction(actionListe_des_points_de_vente);
-        menuStock->addAction(menuCarreaux->menuAction());
+        menuStock->addAction(actionAjouter);
         menuStock->addAction(actionAutres_produits);
+        menuStock->addAction(actionCat_gories);
         menuStock->addAction(actionAlertes);
-        menuCarreaux->addAction(actionAjouter);
-        menuCarreaux->addAction(actionCat_gories);
         menuSynchronisation->addAction(actionSynchroniser_les_donn_es);
         menuSynchronisation->addAction(actionSauvegarder_la_base_de_donn_es);
         menuSynchronisation->addAction(actionRestaurer_la_base_de_donn_es);
@@ -1126,24 +1433,32 @@ public:
         actionListe_des_utilisateurs->setText(QApplication::translate("MainWindow", "Liste des utilisateurs", 0));
         actionParam_tres->setText(QApplication::translate("MainWindow", "Param\303\250tres...", 0));
         actionListe_des_clients->setText(QApplication::translate("MainWindow", "Liste des clients...", 0));
-        actionAjouter->setText(QApplication::translate("MainWindow", "Liste des carreaux", 0));
-        actionCat_gories->setText(QApplication::translate("MainWindow", "Formats de carreaux", 0));
+        actionAjouter->setText(QApplication::translate("MainWindow", "Carreaux", 0));
+        actionCat_gories->setText(QApplication::translate("MainWindow", "Formats", 0));
         actionClients_avec_impay_s->setText(QApplication::translate("MainWindow", "Clients avec impay\303\251s", 0));
-        actionClients_avec_pr_payements->setText(QApplication::translate("MainWindow", "Clients avec pr\303\251-payements", 0));
+        actionClients_avec_pr_payements->setText(QApplication::translate("MainWindow", "D\303\251pots des clients", 0));
         actionAlertes->setText(QApplication::translate("MainWindow", "Alertes", 0));
+        user_name->setText(QString());
+        user_pv->setText(QString());
         block_points_vente->setTitle(QApplication::translate("MainWindow", "Les ventes", 0));
         QTableWidgetItem *___qtablewidgetitem = table_recette->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Date", 0));
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Facture N\302\260", 0));
         QTableWidgetItem *___qtablewidgetitem1 = table_recette->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "valeur", 0));
-        total_recette->setText(QString());
+        label_16->setText(QApplication::translate("MainWindow", "Ventes", 0));
+        total_recette->setText(QApplication::translate("MainWindow", "0", 0));
+        label_11->setText(QApplication::translate("MainWindow", "D\303\251penses", 0));
+        total_depense->setText(QApplication::translate("MainWindow", "-0", 0));
+        label_15->setText(QApplication::translate("MainWindow", "Retrait", 0));
+        total_retrait->setText(QApplication::translate("MainWindow", "-0", 0));
         pushButton_5->setText(QString());
+        reste_recette->setText(QApplication::translate("MainWindow", "0", 0));
         pushButton_9->setText(QString());
         groupBox_2->setTitle(QApplication::translate("MainWindow", "Autres sevices", 0));
         toolButton_12->setText(QApplication::translate("MainWindow", "Transfert", 0));
         toolButton_13->setText(QApplication::translate("MainWindow", "D\303\251penses", 0));
         toolButton_10->setText(QApplication::translate("MainWindow", "Bris de carreaux", 0));
-        toolButton_11->setText(QApplication::translate("MainWindow", "Retrait du DG", 0));
+        toolButton_11->setText(QApplication::translate("MainWindow", "Retrait", 0));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Inventaires", 0));
         label_12->setText(QApplication::translate("MainWindow", "Format", 0));
         label->setText(QApplication::translate("MainWindow", "Produit", 0));
@@ -1162,10 +1477,15 @@ public:
         QTableWidgetItem *___qtablewidgetitem6 = table_inventaire->horizontalHeaderItem(4);
         ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "Qte", 0));
         QTableWidgetItem *___qtablewidgetitem7 = table_inventaire->horizontalHeaderItem(5);
-        ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "PU", 0));
+        ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "Cumul", 0));
         QTableWidgetItem *___qtablewidgetitem8 = table_inventaire->horizontalHeaderItem(6);
-        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow", "Valeur", 0));
+        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow", "PU", 0));
+        QTableWidgetItem *___qtablewidgetitem9 = table_inventaire->horizontalHeaderItem(7);
+        ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "Valeur", 0));
         label_6->setText(QString());
+        affichage_m2->setText(QApplication::translate("MainWindow", "M2", 0));
+        affichage_cartons->setText(QApplication::translate("MainWindow", "Cartons", 0));
+        affichage_pieces->setText(QApplication::translate("MainWindow", "Pi\303\250ces", 0));
         pushButton_2->setText(QString());
         groupBox_4->setTitle(QApplication::translate("MainWindow", "Effectuer une vente", 0));
         label_7->setText(QApplication::translate("MainWindow", "Produit", 0));
@@ -1183,25 +1503,40 @@ public:
         label_9->setText(QApplication::translate("MainWindow", "PU", 0));
         label_10->setText(QApplication::translate("MainWindow", "Total", 0));
         calcul->setPlaceholderText(QApplication::translate("MainWindow", "Calcul de la quantit\303\251 \303\240 sortir", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_13->setToolTip(QApplication::translate("MainWindow", "Arrondire par d\303\251faut", 0));
+#endif // QT_NO_TOOLTIP
+        pushButton_13->setText(QApplication::translate("MainWindow", "D", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_14->setToolTip(QApplication::translate("MainWindow", "Arrondire par exc\303\250s", 0));
+#endif // QT_NO_TOOLTIP
+        pushButton_14->setText(QApplication::translate("MainWindow", "E", 0));
         pushButton_3->setText(QApplication::translate("MainWindow", "Ajouter", 0));
-        QTableWidgetItem *___qtablewidgetitem9 = table_vente->horizontalHeaderItem(0);
-        ___qtablewidgetitem9->setText(QApplication::translate("MainWindow", "Produit", 0));
-        QTableWidgetItem *___qtablewidgetitem10 = table_vente->horizontalHeaderItem(1);
-        ___qtablewidgetitem10->setText(QApplication::translate("MainWindow", "Qte", 0));
-        QTableWidgetItem *___qtablewidgetitem11 = table_vente->horizontalHeaderItem(2);
-        ___qtablewidgetitem11->setText(QApplication::translate("MainWindow", "Valeur", 0));
-        total_facture->setText(QApplication::translate("MainWindow", "Total = 0 FCFA", 0));
+        groupBox->setTitle(QString());
+        nb_cartons->setText(QApplication::translate("MainWindow", "0", 0));
+        nb_m2->setText(QApplication::translate("MainWindow", "0", 0));
+        nb_pieces->setText(QApplication::translate("MainWindow", "0", 0));
+        QTableWidgetItem *___qtablewidgetitem10 = table_vente->horizontalHeaderItem(0);
+        ___qtablewidgetitem10->setText(QApplication::translate("MainWindow", "Produit", 0));
+        QTableWidgetItem *___qtablewidgetitem11 = table_vente->horizontalHeaderItem(1);
+        ___qtablewidgetitem11->setText(QApplication::translate("MainWindow", "Qte", 0));
+        QTableWidgetItem *___qtablewidgetitem12 = table_vente->horizontalHeaderItem(2);
+        ___qtablewidgetitem12->setText(QApplication::translate("MainWindow", "Valeur", 0));
+#ifndef QT_NO_TOOLTIP
+        pushButton_4->setToolTip(QApplication::translate("MainWindow", "Supprimer", 0));
+#endif // QT_NO_TOOLTIP
+        pushButton_4->setText(QString());
+        btn_apercu->setText(QApplication::translate("MainWindow", "Aper\303\247u Avant Impression", 0));
+        total_facture->setText(QApplication::translate("MainWindow", "Total = 0 F CFA", 0));
+        label_remise->setText(QApplication::translate("MainWindow", "Remise = 0 F CFA", 0));
         list_clients->clear();
         list_clients->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "Choisir un client", 0)
         );
         pushButton_10->setText(QString());
         pushButton->setText(QString());
+        non_livre->setText(QApplication::translate("MainWindow", "Pay\303\251 & Non Livr\303\251", 0));
         bon->setText(QApplication::translate("MainWindow", "Bon", 0));
-#ifndef QT_NO_TOOLTIP
-        pushButton_4->setToolTip(QApplication::translate("MainWindow", "Supprimer", 0));
-#endif // QT_NO_TOOLTIP
-        pushButton_4->setText(QString());
 #ifndef QT_NO_TOOLTIP
         pushButton_11->setToolTip(QApplication::translate("MainWindow", "Impay\303\251", 0));
 #endif // QT_NO_TOOLTIP
@@ -1219,12 +1554,13 @@ public:
 #endif // QT_NO_TOOLTIP
         pushButton_6->setText(QString());
         stock_alerte->setTitle(QApplication::translate("MainWindow", "Stock d'alertes", 0));
-        list_prepaye->setTitle(QApplication::translate("MainWindow", "Pr\303\251-Pay\303\251s", 0));
+        list_prepaye->setTitle(QApplication::translate("MainWindow", "D\303\251pots des clients", 0));
         impayes->setTitle(QApplication::translate("MainWindow", "Impay\303\251s", 0));
+        serveur_distant->setText(QApplication::translate("MainWindow", "Utiliser le serveur distant", 0));
+        pushButton_12->setText(QApplication::translate("MainWindow", "Synchroniser", 0));
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0));
         menuPoints_de_vente->setTitle(QApplication::translate("MainWindow", "Points de vente", 0));
         menuStock->setTitle(QApplication::translate("MainWindow", "Stock", 0));
-        menuCarreaux->setTitle(QApplication::translate("MainWindow", "Carreaux", 0));
         menuSynchronisation->setTitle(QApplication::translate("MainWindow", "Synchronisation", 0));
         menuUtilisateurs->setTitle(QApplication::translate("MainWindow", "Utilisateurs", 0));
         menuClients->setTitle(QApplication::translate("MainWindow", "Clients", 0));

@@ -28,11 +28,13 @@ void listpointvente::on_pushButton_clicked()
     }
 
     QSqlQuery qr;
+    QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
     if(id_selected==""){
-        qr.prepare("insert into points_vente(adresse,responsable,contact) values(:adresse,:responsable,:contact)");
+        qr.prepare("insert into points_vente(adresse,responsable,contact,token_id) values(:adresse,:responsable,:contact,:token_id)");
         qr.bindValue(":adresse",adresse.toUpper());
         qr.bindValue(":responsable",responsable.toUpper());
         qr.bindValue(":contact",contact);
+        qr.bindValue(":token_id",token_id);
         if(qr.exec()){
             init();
             load_list();
@@ -40,7 +42,7 @@ void listpointvente::on_pushButton_clicked()
             ui->alerte->setText("Une erreur est survenue");
         }
     }else{
-        qr.prepare("update points_vente set adresse=:adresse, responsable=:responsable,contact=:contact where id=:id");
+        qr.prepare("update points_vente set adresse=:adresse, responsable=:responsable,contact=:contact where token_id=:id");
                qr.bindValue(":adresse",adresse.toUpper());
                qr.bindValue(":responsable",responsable.toUpper());
                qr.bindValue(":contact",contact);
@@ -73,7 +75,7 @@ void listpointvente::load_list()
             QString adresse=qr.value(1).toString();
             QString responsable=qr.value(2).toString();
             QString contact=qr.value(3).toString();
-
+            QString token_id=qr.value("token_id").toString();
 
             ui->table_liste_point_vente->setItem(r,0,new QTableWidgetItem(adresse));
             ui->table_liste_point_vente->setItem(r,1,new QTableWidgetItem(responsable));
@@ -81,7 +83,7 @@ void listpointvente::load_list()
 
 
 
-            ui->table_liste_point_vente->item(r,0)->setToolTip(id);
+            ui->table_liste_point_vente->item(r,0)->setToolTip(token_id);
             r++;
 
         }
@@ -108,7 +110,7 @@ void listpointvente::on_table_liste_point_vente_cellClicked(int row, int column)
 void listpointvente::on_btn_edit_clicked()
 {
     QSqlQuery qr;
-        qr.exec("select * from points_vente where id='"+id_selected+"'");
+        qr.exec("select * from points_vente where token_id='"+id_selected+"'");
         if(qr.next()){
             QString adresse=qr.value(1).toString();
             QString responsable=qr.value(2).toString();
@@ -129,7 +131,7 @@ void listpointvente::on_btn_del_clicked()
             int res=QMessageBox::question(this,"Confirmation","Voulez-vous vraiment supprimer le format ?");
             if(res==QMessageBox::Yes){
                 QSqlQuery qr;
-                if(qr.exec("delete from points_vente where id='"+id_selected+"'")){
+                if(qr.exec("delete from points_vente where token_id='"+id_selected+"'")){
                     load_list();
                     init();
                 }else{
@@ -171,4 +173,15 @@ void listpointvente::on_search_textChanged(const QString &arg1)
     if(r==0){
         ui->table_liste_point_vente->setRowCount(0);
     }
+}
+
+void listpointvente::on_pushButton_3_clicked()
+{
+    if(id_selected==""){
+        QMessageBox::warning(this,"Erreur","Aucun point de vente n'est sélectionné");
+        return;
+    }
+    info_point_vente=new InfoPointDeVente(id_selected,this);
+    info_point_vente->setModal(true);
+    info_point_vente->show();
 }

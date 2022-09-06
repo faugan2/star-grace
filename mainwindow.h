@@ -28,6 +28,12 @@
 #include "allprepayement.h"
 #include "bon.h"
 #include "facture.h"
+#include "clientprepayement.h"
+#include "login.h"
+#include "synchronisation.h"
+#include "apercufactur.h"
+#include "loading.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -51,6 +57,7 @@ private slots:
     void on_produits_currentIndexChanged(int index);
 
     void make_vente_calculation();
+    void make_vente_calculation(int round);
 
     void on_qte_textChanged(const QString &arg1);
 
@@ -159,8 +166,43 @@ private slots:
 
     void on_bon_clicked();
 
+    void on_serveur_distant_clicked();
+
+    void on_actionSynchroniser_les_donn_es_triggered();
+
+    void on_pushButton_12_clicked();
+    void all_updates();
+
+    void on_btn_apercu_clicked();
+
+
+    void on_list_clients_currentIndexChanged(int index);
+
+    void on_unite_currentIndexChanged(int index);
+
+    void on_pushButton_13_clicked();
+
+    void on_pushButton_14_clicked();
+
+    void onfinish(QNetworkReply*);
+
+    void on_table_inventaire_cellClicked(int row, int column);
+
+    void on_affichage_m2_clicked();
+
+    void on_affichage_cartons_clicked();
+
+    void on_affichage_pieces_clicked();
+
+    float new_price(QString from,QString to,float price, float qte_m2,float qte_cartons);
+
+    void synchroniser(QString table);
+    void synchroniser_tout();
+
 public:
     void print_facture(QString token);
+    void close_db();
+    void load_server();
 private:
     Ui::MainWindow *ui;
     AjouterPointDeVente *ajout_point_vente;
@@ -187,6 +229,10 @@ private:
     AllPrePayement *all_pre_payement;
     Facture *facture;
     Bon *bon;
+    ClientPrePayement *client_prepayement;
+    Synchronisation *synchronisation;
+    ApercuFactur *apercu_facture;
+
 
 
 
@@ -206,9 +252,28 @@ private:
      QStringList vente_pu;
      QStringList vente_total;
      QStringList vente_carton;
+     QStringList unites;
+     QStringList vente_total_cartons;
+     QStringList vente_total_m2;
+     QStringList vente_total_pieces;
+
      QString vente_client;
      bool can_update_combobox;
+
+     QTimer *timer;
+     QTimer *timer2;
+
+     int selected_row_inventaire;
 
 };
 
 #endif // MAINWINDOW_H
+
+
+
+
+
+
+
+
+

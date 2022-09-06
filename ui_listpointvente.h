@@ -36,6 +36,7 @@ public:
     QLineEdit *search;
     QPushButton *pushButton_2;
     QSpacerItem *horizontalSpacer_2;
+    QPushButton *pushButton_3;
     QPushButton *btn_edit;
     QPushButton *btn_del;
     QTableWidget *table_liste_point_vente;
@@ -85,6 +86,14 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
 
+        pushButton_3 = new QPushButton(listpointvente);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setStyleSheet(QLatin1String("padding:8px;\n"
+"border:none;\n"
+"background-color:white;"));
+
+        horizontalLayout_2->addWidget(pushButton_3);
+
         btn_edit = new QPushButton(listpointvente);
         btn_edit->setObjectName(QStringLiteral("btn_edit"));
         btn_edit->setStyleSheet(QLatin1String("background-color:white;\n"
@@ -122,6 +131,7 @@ public:
         table_liste_point_vente->setObjectName(QStringLiteral("table_liste_point_vente"));
         table_liste_point_vente->setGridStyle(Qt::DashDotDotLine);
         table_liste_point_vente->horizontalHeader()->setStretchLastSection(true);
+        table_liste_point_vente->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(table_liste_point_vente);
 
@@ -209,6 +219,7 @@ public:
         listpointvente->setWindowTitle(QApplication::translate("listpointvente", "La liste des points de vente", 0));
         search->setPlaceholderText(QApplication::translate("listpointvente", "Rechercher", 0));
         pushButton_2->setText(QString());
+        pushButton_3->setText(QApplication::translate("listpointvente", "Stock", 0));
         btn_edit->setText(QString());
         btn_del->setText(QString());
         QTableWidgetItem *___qtablewidgetitem = table_liste_point_vente->horizontalHeaderItem(0);

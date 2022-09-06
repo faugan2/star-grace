@@ -13,11 +13,12 @@ AjoutAutres::AjoutAutres(QWidget *parent) :
     init();
     load_list();
     load_formats();
-    ui->table_liste_point_vente->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    //ui->table_liste_point_vente->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->table_liste_point_vente->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->btn_del->setEnabled(false);
     ui->btn_edit->setEnabled(false);
     ui->btn_modif_stock->setEnabled(false);
+    ui->btn_modif_stock->hide();
 }
 
 AjoutAutres::~AjoutAutres()
@@ -40,13 +41,15 @@ void AjoutAutres::on_pushButton_clicked()
         }
 
         QSqlQuery qr;
+        QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
         if(id_selected==""){
-            qr.prepare("insert into stock (type,nom,format,prix_par_m2,alerte) values(:type,:nom,:format,:prix_par_m2,:alerte)");
+            qr.prepare("insert into stock (type,nom,format,prix_par_m2,alerte,token_id) values(:type,:nom,:format,:prix_par_m2,:alerte,:token_id)");
             qr.bindValue(":type","2");
             qr.bindValue(":nom",nom.toUpper());
             qr.bindValue(":format",format);
             qr.bindValue(":prix_par_m2",prix_par_m2);
             qr.bindValue(":alerte","0");
+            qr.bindValue(":token_id",token_id);
             if(qr.exec()){
                 init();
                 load_list();
@@ -54,7 +57,7 @@ void AjoutAutres::on_pushButton_clicked()
                 QMessageBox::warning(this,"Erreur","Une erreur est survenue l'ors de l'insertion");
             }
         }else{
-            qr.prepare("update stock set nom=:nom, format=:format,prix_par_m2=:prix_par_m2 where id=:id");
+            qr.prepare("update stock set nom=:nom, format=:format,prix_par_m2=:prix_par_m2 where token_id =:id");
             qr.bindValue(":nom",nom.toUpper());
             qr.bindValue(":format",format);
             qr.bindValue(":prix_par_m2",prix_par_m2);
@@ -82,7 +85,7 @@ void AjoutAutres::load_list()
     qr.exec("select * from stock where type='2'");
     int r=0;
     while(qr.next()){
-        QString id=qr.value(0).toString();
+        QString id=qr.value("token_id").toString();
         QString nom=qr.value(2).toString();
         QString format=qr.value(3).toString();
         QString prix_par_m2=qr.value(4).toString();
@@ -121,7 +124,7 @@ void AjoutAutres::on_search_textChanged(const QString &arg1)
     int r=0;
     //ui->table_liste_point_vente->setRowCount(0);
     while(qr.next()){
-        QString id=qr.value(0).toString();
+        QString id=qr.value("token_id").toString();
         QString type=qr.value(1).toString();
         if(type=="1"){
             continue;
@@ -148,7 +151,7 @@ void AjoutAutres::on_search_textChanged(const QString &arg1)
 void AjoutAutres::on_btn_edit_clicked()
 {
     QSqlQuery qr;
-    qr.exec("select * from stock where id='"+id_selected+"'");
+    qr.exec("select * from stock where token_id='"+id_selected+"'");
     if(qr.next()){
         QString nom=qr.value("nom").toString();
         QString format=qr.value("format").toString();
@@ -169,7 +172,7 @@ void AjoutAutres::on_btn_del_clicked()
         int res=QMessageBox::question(this,"Confirmation","Voulez-vous vraiment supprimer le format ?");
         if(res==QMessageBox::Yes){
             QSqlQuery qr;
-            if(qr.exec("delete from stock where id='"+id_selected+"'")){
+            if(qr.exec("delete from stock where token_id='"+id_selected+"'")){
                 load_list();
                 init();
             }else{

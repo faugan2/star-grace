@@ -2,8 +2,9 @@
 #define LOGIN_H
 
 #include <QDialog>
-#include "mainwindow.h"
 #include "includes.h"
+#include "loading.h"
+#include "mainwindow.h"
 
 
 
@@ -27,10 +28,17 @@ private slots:
 
     void on_password_textChanged(const QString &arg1);
 
+    void on_serveur_distant_clicked();
+    void close_db();
+    void load_server();
+
 private:
     Ui::Login *ui;
-    MainWindow *m;
+
+    //MainWindow *m;
+public:
     QSqlDatabase db;
+    QSqlDatabase db_online;
 };
 
 #endif // LOGIN_H

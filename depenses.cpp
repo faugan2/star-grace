@@ -34,12 +34,14 @@ void Depenses::on_pushButton_clicked()
     if(qr.next()){
         id_user=qr.value(0).toString();
     }
-    qr.prepare("insert into depenses(titre,montant,detail,date,user) values(:titre,:montant,:detail,:date,:user)");
+    QString token_id=QString::number(QDateTime::currentDateTime().toTime_t());
+    qr.prepare("insert into depenses(titre,montant,detail,date,user,token_id) values(:titre,:montant,:detail,:date,:user,:token_id)");
     qr.bindValue(":titre",titre);
     qr.bindValue(":montant",montant);
     qr.bindValue(":detail",detail);
     qr.bindValue(":date",QDate::currentDate());
     qr.bindValue(":user",id_user);
+    qr.bindValue(":token_id",token_id);
     if(qr.exec()){
         QMessageBox::information(this,"Success","Dépense bien enregistrée");
         ui->titre->clear();

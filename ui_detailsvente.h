@@ -30,7 +30,7 @@ class Ui_DetailsVente
 {
 public:
     QVBoxLayout *verticalLayout_3;
-    QHBoxLayout *horizontalLayout_5;
+    QHBoxLayout *horizontalLayout_6;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout_2;
     QTableWidget *table_vente;
@@ -38,6 +38,7 @@ public:
     QLabel *valeur_total;
     QSpacerItem *horizontalSpacer_4;
     QCheckBox *bon;
+    QPushButton *pushButton_3;
     QPushButton *pushButton;
     QGroupBox *groupBox_2;
     QVBoxLayout *verticalLayout;
@@ -55,34 +56,41 @@ public:
     QLabel *label_biz;
     QTableWidget *table_biz;
     QSpacerItem *verticalSpacer;
+    QGroupBox *non_livre;
+    QHBoxLayout *horizontalLayout_5;
+    QSpacerItem *horizontalSpacer_5;
+    QPushButton *pushButton_2;
 
     void setupUi(QDialog *DetailsVente)
     {
         if (DetailsVente->objectName().isEmpty())
             DetailsVente->setObjectName(QStringLiteral("DetailsVente"));
-        DetailsVente->resize(645, 248);
+        DetailsVente->resize(645, 282);
         verticalLayout_3 = new QVBoxLayout(DetailsVente);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         groupBox = new QGroupBox(DetailsVente);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         verticalLayout_2 = new QVBoxLayout(groupBox);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         table_vente = new QTableWidget(groupBox);
-        if (table_vente->columnCount() < 3)
-            table_vente->setColumnCount(3);
+        if (table_vente->columnCount() < 4)
+            table_vente->setColumnCount(4);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         table_vente->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
         table_vente->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         table_vente->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        table_vente->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         table_vente->setObjectName(QStringLiteral("table_vente"));
         table_vente->setAutoFillBackground(false);
         table_vente->setAlternatingRowColors(true);
         table_vente->setGridStyle(Qt::DashDotDotLine);
         table_vente->horizontalHeader()->setStretchLastSection(true);
+        table_vente->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(table_vente);
 
@@ -103,6 +111,14 @@ public:
 
         horizontalLayout_3->addWidget(bon);
 
+        pushButton_3 = new QPushButton(groupBox);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setStyleSheet(QLatin1String("background-color:white;\n"
+"padding:8px;\n"
+"border:none;"));
+
+        horizontalLayout_3->addWidget(pushButton_3);
+
         pushButton = new QPushButton(groupBox);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setStyleSheet(QLatin1String("background-color:white;\n"
@@ -118,11 +134,11 @@ public:
         verticalLayout_2->addLayout(horizontalLayout_3);
 
 
-        horizontalLayout_5->addWidget(groupBox);
+        horizontalLayout_6->addWidget(groupBox);
 
         groupBox_2 = new QGroupBox(DetailsVente);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setMaximumSize(QSize(300, 16777215));
+        groupBox_2->setMaximumSize(QSize(200, 16777215));
         verticalLayout = new QVBoxLayout(groupBox_2);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
@@ -185,14 +201,14 @@ public:
         table_biz = new QTableWidget(groupBox_2);
         if (table_biz->columnCount() < 4)
             table_biz->setColumnCount(4);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        table_biz->setHorizontalHeaderItem(0, __qtablewidgetitem3);
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        table_biz->setHorizontalHeaderItem(1, __qtablewidgetitem4);
+        table_biz->setHorizontalHeaderItem(0, __qtablewidgetitem4);
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
-        table_biz->setHorizontalHeaderItem(2, __qtablewidgetitem5);
+        table_biz->setHorizontalHeaderItem(1, __qtablewidgetitem5);
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
-        table_biz->setHorizontalHeaderItem(3, __qtablewidgetitem6);
+        table_biz->setHorizontalHeaderItem(2, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        table_biz->setHorizontalHeaderItem(3, __qtablewidgetitem7);
         table_biz->setObjectName(QStringLiteral("table_biz"));
         table_biz->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         table_biz->setAlternatingRowColors(true);
@@ -206,10 +222,31 @@ public:
         verticalLayout->addItem(verticalSpacer);
 
 
-        horizontalLayout_5->addWidget(groupBox_2);
+        horizontalLayout_6->addWidget(groupBox_2);
 
 
-        verticalLayout_3->addLayout(horizontalLayout_5);
+        verticalLayout_3->addLayout(horizontalLayout_6);
+
+        non_livre = new QGroupBox(DetailsVente);
+        non_livre->setObjectName(QStringLiteral("non_livre"));
+        horizontalLayout_5 = new QHBoxLayout(non_livre);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_5);
+
+        pushButton_2 = new QPushButton(non_livre);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setStyleSheet(QLatin1String("background-color:green;\n"
+"color:white;\n"
+"padding:8px;\n"
+"border:none;\n"
+"font-weight:bold;"));
+
+        horizontalLayout_5->addWidget(pushButton_2);
+
+
+        verticalLayout_3->addWidget(non_livre);
 
 
         retranslateUi(DetailsVente);
@@ -226,9 +263,12 @@ public:
         QTableWidgetItem *___qtablewidgetitem1 = table_vente->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QApplication::translate("DetailsVente", "Qte", 0));
         QTableWidgetItem *___qtablewidgetitem2 = table_vente->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("DetailsVente", "Valeur", 0));
+        ___qtablewidgetitem2->setText(QApplication::translate("DetailsVente", "Pu", 0));
+        QTableWidgetItem *___qtablewidgetitem3 = table_vente->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QApplication::translate("DetailsVente", "Valeur", 0));
         valeur_total->setText(QString());
         bon->setText(QApplication::translate("DetailsVente", "Bon", 0));
+        pushButton_3->setText(QApplication::translate("DetailsVente", "Aper\303\247u", 0));
         pushButton->setText(QString());
         groupBox_2->setTitle(QApplication::translate("DetailsVente", "Options", 0));
         label->setText(QApplication::translate("DetailsVente", "Remise", 0));
@@ -237,14 +277,16 @@ public:
         impaye->setText(QApplication::translate("DetailsVente", "-", 0));
         label_5->setText(QApplication::translate("DetailsVente", "Biz", 0));
         label_biz->setText(QApplication::translate("DetailsVente", "-", 0));
-        QTableWidgetItem *___qtablewidgetitem3 = table_biz->horizontalHeaderItem(0);
-        ___qtablewidgetitem3->setText(QApplication::translate("DetailsVente", "Produit", 0));
-        QTableWidgetItem *___qtablewidgetitem4 = table_biz->horizontalHeaderItem(1);
-        ___qtablewidgetitem4->setText(QApplication::translate("DetailsVente", "Qte", 0));
-        QTableWidgetItem *___qtablewidgetitem5 = table_biz->horizontalHeaderItem(2);
-        ___qtablewidgetitem5->setText(QApplication::translate("DetailsVente", "Prix", 0));
-        QTableWidgetItem *___qtablewidgetitem6 = table_biz->horizontalHeaderItem(3);
-        ___qtablewidgetitem6->setText(QApplication::translate("DetailsVente", "Total", 0));
+        QTableWidgetItem *___qtablewidgetitem4 = table_biz->horizontalHeaderItem(0);
+        ___qtablewidgetitem4->setText(QApplication::translate("DetailsVente", "Produit", 0));
+        QTableWidgetItem *___qtablewidgetitem5 = table_biz->horizontalHeaderItem(1);
+        ___qtablewidgetitem5->setText(QApplication::translate("DetailsVente", "Qte", 0));
+        QTableWidgetItem *___qtablewidgetitem6 = table_biz->horizontalHeaderItem(2);
+        ___qtablewidgetitem6->setText(QApplication::translate("DetailsVente", "Prix", 0));
+        QTableWidgetItem *___qtablewidgetitem7 = table_biz->horizontalHeaderItem(3);
+        ___qtablewidgetitem7->setText(QApplication::translate("DetailsVente", "Total", 0));
+        non_livre->setTitle(QApplication::translate("DetailsVente", "NON LIVRE", 0));
+        pushButton_2->setText(QApplication::translate("DetailsVente", "Marquer comme livr\303\251", 0));
     } // retranslateUi
 
 };

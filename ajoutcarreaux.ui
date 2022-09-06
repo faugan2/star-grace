@@ -121,6 +121,9 @@ padding:5px;</string>
        <property name="gridStyle">
         <enum>Qt::DashDotDotLine</enum>
        </property>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>Nom</string>

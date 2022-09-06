@@ -19,6 +19,7 @@ Biz::Biz(QStringList vente_produit,QStringList vente_qte,QStringList vente_pu,QS
     load_produits();
     ui->options->hide();
 
+
 }
 
 Biz::~Biz()

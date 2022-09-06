@@ -40,18 +40,21 @@ public:
         verticalLayout = new QVBoxLayout(AllSa);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         table_sa = new QTableWidget(AllSa);
-        if (table_sa->columnCount() < 3)
-            table_sa->setColumnCount(3);
+        if (table_sa->columnCount() < 4)
+            table_sa->setColumnCount(4);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         table_sa->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
         table_sa->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
         table_sa->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        table_sa->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         table_sa->setObjectName(QStringLiteral("table_sa"));
         table_sa->setAlternatingRowColors(true);
         table_sa->setGridStyle(Qt::DashDotDotLine);
         table_sa->horizontalHeader()->setStretchLastSection(true);
+        table_sa->verticalHeader()->setVisible(false);
 
         verticalLayout->addWidget(table_sa);
 
@@ -82,11 +85,13 @@ public:
     {
         AllSa->setWindowTitle(QApplication::translate("AllSa", "Tous les produits en alertes", 0));
         QTableWidgetItem *___qtablewidgetitem = table_sa->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("AllSa", "Produits", 0));
+        ___qtablewidgetitem->setText(QApplication::translate("AllSa", "Point de vente", 0));
         QTableWidgetItem *___qtablewidgetitem1 = table_sa->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("AllSa", "En Stock", 0));
+        ___qtablewidgetitem1->setText(QApplication::translate("AllSa", "Produits", 0));
         QTableWidgetItem *___qtablewidgetitem2 = table_sa->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("AllSa", "SA", 0));
+        ___qtablewidgetitem2->setText(QApplication::translate("AllSa", "En Stock", 0));
+        QTableWidgetItem *___qtablewidgetitem3 = table_sa->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QApplication::translate("AllSa", "SA", 0));
         pushButton->setText(QApplication::translate("AllSa", "Mettre \303\240 jour", 0));
     } // retranslateUi
 

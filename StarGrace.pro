@@ -41,7 +41,13 @@ SOURCES += main.cpp\
     allsa.cpp \
     allprepayement.cpp \
     facture.cpp \
-    bon.cpp
+    bon.cpp \
+    clientprepayement.cpp \
+    synchronisation.cpp \
+    loading.cpp \
+    printtransferts.cpp \
+    apercufactur.cpp \
+    apercufacturewithtoken.cpp
 
 HEADERS  += mainwindow.h \
     login.h \
@@ -72,7 +78,13 @@ HEADERS  += mainwindow.h \
     allsa.h \
     allprepayement.h \
     facture.h \
-    bon.h
+    bon.h \
+    clientprepayement.h \
+    synchronisation.h \
+    loading.h \
+    printtransferts.h \
+    apercufactur.h \
+    apercufacturewithtoken.h
 
 FORMS    += mainwindow.ui \
     login.ui \
@@ -102,7 +114,13 @@ FORMS    += mainwindow.ui \
     allsa.ui \
     allprepayement.ui \
     facture.ui \
-    bon.ui
+    bon.ui \
+    clientprepayement.ui \
+    synchronisation.ui \
+    loading.ui \
+    printtransferts.ui \
+    apercufactur.ui \
+    apercufacturewithtoken.ui
 
 RESOURCES += \
     img.qrc

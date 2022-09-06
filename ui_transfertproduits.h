@@ -35,7 +35,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_2;
     QLineEdit *search;
-    QPushButton *pushButton_2;
+    QPushButton *btn_print;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *btn_edit;
     QPushButton *btn_del;
@@ -44,13 +44,10 @@ public:
     QVBoxLayout *verticalLayout;
     QFormLayout *formLayout;
     QLabel *label;
-    QLabel *label_2;
-    QLineEdit *qte;
-    QComboBox *produit;
-    QLabel *label_3;
-    QLabel *label_4;
     QComboBox *du;
+    QLabel *label_2;
     QComboBox *a;
+    QTableWidget *table_produits;
     QLabel *qte_en_stock;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
@@ -74,17 +71,17 @@ public:
 
         horizontalLayout_2->addWidget(search);
 
-        pushButton_2 = new QPushButton(TransfertProduits);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setEnabled(false);
-        pushButton_2->setStyleSheet(QLatin1String("background-color:white;\n"
+        btn_print = new QPushButton(TransfertProduits);
+        btn_print->setObjectName(QStringLiteral("btn_print"));
+        btn_print->setEnabled(true);
+        btn_print->setStyleSheet(QLatin1String("background-color:white;\n"
 "border:none;\n"
 "padding:5px;"));
         QIcon icon;
         icon.addFile(QStringLiteral(":/img/images/imprimer.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon);
+        btn_print->setIcon(icon);
 
-        horizontalLayout_2->addWidget(pushButton_2);
+        horizontalLayout_2->addWidget(btn_print);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -131,7 +128,9 @@ public:
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
         table_liste_point_vente->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         table_liste_point_vente->setObjectName(QStringLiteral("table_liste_point_vente"));
+        table_liste_point_vente->setSelectionBehavior(QAbstractItemView::SelectRows);
         table_liste_point_vente->setGridStyle(Qt::DashDotDotLine);
+        table_liste_point_vente->verticalHeader()->setVisible(false);
 
         verticalLayout_2->addWidget(table_liste_point_vente);
 
@@ -140,6 +139,7 @@ public:
 
         groupBox = new QGroupBox(TransfertProduits);
         groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setMinimumSize(QSize(250, 0));
         groupBox->setMaximumSize(QSize(200, 16777215));
         verticalLayout = new QVBoxLayout(groupBox);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -151,37 +151,16 @@ public:
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
-        label_2 = new QLabel(groupBox);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
-
-        qte = new QLineEdit(groupBox);
-        qte->setObjectName(QStringLiteral("qte"));
-
-        formLayout->setWidget(3, QFormLayout::FieldRole, qte);
-
-        produit = new QComboBox(groupBox);
-        produit->setObjectName(QStringLiteral("produit"));
-        produit->setEditable(true);
-
-        formLayout->setWidget(2, QFormLayout::FieldRole, produit);
-
-        label_3 = new QLabel(groupBox);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
-
-        label_4 = new QLabel(groupBox);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
-
         du = new QComboBox(groupBox);
         du->setObjectName(QStringLiteral("du"));
         du->setEditable(true);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, du);
+
+        label_2 = new QLabel(groupBox);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
         a = new QComboBox(groupBox);
         a->setObjectName(QStringLiteral("a"));
@@ -191,6 +170,25 @@ public:
 
 
         verticalLayout->addLayout(formLayout);
+
+        table_produits = new QTableWidget(groupBox);
+        if (table_produits->columnCount() < 3)
+            table_produits->setColumnCount(3);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        table_produits->setHorizontalHeaderItem(0, __qtablewidgetitem5);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        table_produits->setHorizontalHeaderItem(1, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        table_produits->setHorizontalHeaderItem(2, __qtablewidgetitem7);
+        table_produits->setObjectName(QStringLiteral("table_produits"));
+        table_produits->setMinimumSize(QSize(0, 150));
+        table_produits->setShowGrid(true);
+        table_produits->setGridStyle(Qt::DashDotDotLine);
+        table_produits->setWordWrap(true);
+        table_produits->horizontalHeader()->setStretchLastSection(true);
+        table_produits->verticalHeader()->setVisible(false);
+
+        verticalLayout->addWidget(table_produits);
 
         qte_en_stock = new QLabel(groupBox);
         qte_en_stock->setObjectName(QStringLiteral("qte_en_stock"));
@@ -236,7 +234,7 @@ public:
     {
         TransfertProduits->setWindowTitle(QApplication::translate("TransfertProduits", "Transfert de produits", 0));
         search->setPlaceholderText(QApplication::translate("TransfertProduits", "Rechercher", 0));
-        pushButton_2->setText(QString());
+        btn_print->setText(QString());
         btn_edit->setText(QString());
         btn_del->setText(QString());
         QTableWidgetItem *___qtablewidgetitem = table_liste_point_vente->horizontalHeaderItem(0);
@@ -244,7 +242,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem1 = table_liste_point_vente->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QApplication::translate("TransfertProduits", "Produuit", 0));
         QTableWidgetItem *___qtablewidgetitem2 = table_liste_point_vente->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("TransfertProduits", "Quantit\303\251", 0));
+        ___qtablewidgetitem2->setText(QApplication::translate("TransfertProduits", "Qte en crt", 0));
         QTableWidgetItem *___qtablewidgetitem3 = table_liste_point_vente->horizontalHeaderItem(3);
         ___qtablewidgetitem3->setText(QApplication::translate("TransfertProduits", "Du", 0));
         QTableWidgetItem *___qtablewidgetitem4 = table_liste_point_vente->horizontalHeaderItem(4);
@@ -252,8 +250,12 @@ public:
         groupBox->setTitle(QApplication::translate("TransfertProduits", "Effectuer un transfert", 0));
         label->setText(QApplication::translate("TransfertProduits", "Du", 0));
         label_2->setText(QApplication::translate("TransfertProduits", "A", 0));
-        label_3->setText(QApplication::translate("TransfertProduits", "Produit", 0));
-        label_4->setText(QApplication::translate("TransfertProduits", "Quantit\303\251", 0));
+        QTableWidgetItem *___qtablewidgetitem5 = table_produits->horizontalHeaderItem(0);
+        ___qtablewidgetitem5->setText(QApplication::translate("TransfertProduits", "Produits", 0));
+        QTableWidgetItem *___qtablewidgetitem6 = table_produits->horizontalHeaderItem(1);
+        ___qtablewidgetitem6->setText(QApplication::translate("TransfertProduits", "Crt", 0));
+        QTableWidgetItem *___qtablewidgetitem7 = table_produits->horizontalHeaderItem(2);
+        ___qtablewidgetitem7->setText(QApplication::translate("TransfertProduits", "Pcs", 0));
         qte_en_stock->setText(QString());
         pushButton->setText(QApplication::translate("TransfertProduits", "Valider", 0));
         alerte->setText(QString());
