@@ -563,6 +563,8 @@ void MainWindow::on_pushButton_3_clicked()
     ui->table_vente->item(row,2)->setToolTip(total);
     ui->table_vente->item(row,2)->setTextAlignment(Qt::AlignCenter);
     ui->table_vente->item(row,1)->setTextAlignment(Qt::AlignCenter);
+
+    ui->table_vente->item(row,1)->setToolTip(QString::number(row));
    // ui->table_vente->setColumnWidth(2,80);
     ui->produits->setCurrentIndex(0);
     ui->qte->setText("");
@@ -1736,6 +1738,39 @@ void MainWindow::on_pushButton_11_clicked()
 
 void MainWindow::on_pushButton_4_clicked()
 {
+    int total=ui->table_vente->rowCount();
+    if(total==0){
+        return;
+    }
+
+    int row=ui->table_vente->selectedItems().at(0)->row();
+    QString index=ui->table_vente->item(row,1)->toolTip();
+
+    qDebug()<<QString::number(row)<<index<<unites.at(index.toInt())<<vente_produit.at(index.toInt());
+    vente_produit.removeAt(index.toInt());
+    vente_produit_format.removeAt(index.toInt());
+    vente_qte.removeAt(index.toInt());
+    vente_total.removeAt(index.toInt());
+    vente_pu.removeAt(index.toInt());
+    vente_carton.removeAt(index.toInt());
+    vente_qte_m2.removeAt(index.toInt());
+    unites.removeAt(index.toInt());
+    vente_total_cartons.removeAt(index.toInt());
+    vente_total_m2.removeAt(index.toInt());
+    vente_total_pieces.removeAt(index.toInt());
+
+    ui->table_vente->removeRow(index.toInt());
+
+    int old_size=ui->table_vente->rowCount();
+    float sub_total=0;
+    for(int i=0; i<old_size; i++){
+        float v=ui->table_vente->item(i,2)->text().toFloat();
+        sub_total+=v;
+    }
+    ui->total_facture->setText("Total = "+QString::number(sub_total)+" F CFA");
+    return;
+
+
     ui->table_vente->setRowCount(0);
     //vente_carton.clear();
     ui->list_clients->setCurrentIndex(0);
