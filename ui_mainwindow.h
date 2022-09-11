@@ -82,8 +82,13 @@ public:
     QLabel *label_15;
     QSpacerItem *horizontalSpacer_12;
     QLabel *total_retrait;
+    QHBoxLayout *horizontalLayout_25;
+    QLabel *label_17;
+    QSpacerItem *horizontalSpacer_14;
+    QLabel *total_impaye;
     QHBoxLayout *horizontalLayout_23;
     QPushButton *pushButton_5;
+    QLabel *label_18;
     QSpacerItem *horizontalSpacer_13;
     QLabel *reste_recette;
     QSpacerItem *verticalSpacer_3;
@@ -201,11 +206,11 @@ public:
     QGroupBox *list_prepaye;
     QGroupBox *impayes;
     QHBoxLayout *horizontalLayout_17;
-    QSpacerItem *horizontalSpacer_3;
+    QLabel *info;
     QCheckBox *serveur_distant;
+    QSpacerItem *horizontalSpacer_3;
     QFrame *line;
     QPushButton *pushButton_12;
-    QSpacerItem *horizontalSpacer_8;
     QMenuBar *menuBar;
     QMenu *menuFichier;
     QMenu *menuPoints_de_vente;
@@ -220,7 +225,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1083, 690);
+        MainWindow->resize(1083, 720);
         QIcon icon;
         icon.addFile(QStringLiteral(":/img/logo-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -339,7 +344,7 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         block_points_vente = new QGroupBox(centralWidget);
         block_points_vente->setObjectName(QStringLiteral("block_points_vente"));
-        block_points_vente->setMinimumSize(QSize(0, 250));
+        block_points_vente->setMinimumSize(QSize(0, 300));
         block_points_vente->setMaximumSize(QSize(300, 16777215));
         block_points_vente->setStyleSheet(QStringLiteral(""));
         verticalLayout_4 = new QVBoxLayout(block_points_vente);
@@ -448,6 +453,28 @@ public:
 
         verticalLayout_4->addLayout(horizontalLayout_22);
 
+        horizontalLayout_25 = new QHBoxLayout();
+        horizontalLayout_25->setSpacing(6);
+        horizontalLayout_25->setObjectName(QStringLiteral("horizontalLayout_25"));
+        label_17 = new QLabel(block_points_vente);
+        label_17->setObjectName(QStringLiteral("label_17"));
+        label_17->setStyleSheet(QStringLiteral("font-weight:bold;"));
+
+        horizontalLayout_25->addWidget(label_17);
+
+        horizontalSpacer_14 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_25->addItem(horizontalSpacer_14);
+
+        total_impaye = new QLabel(block_points_vente);
+        total_impaye->setObjectName(QStringLiteral("total_impaye"));
+        total_impaye->setStyleSheet(QStringLiteral("font-weight:bold;"));
+
+        horizontalLayout_25->addWidget(total_impaye);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_25);
+
         horizontalLayout_23 = new QHBoxLayout();
         horizontalLayout_23->setSpacing(6);
         horizontalLayout_23->setObjectName(QStringLiteral("horizontalLayout_23"));
@@ -461,6 +488,12 @@ public:
         pushButton_5->setIcon(icon15);
 
         horizontalLayout_23->addWidget(pushButton_5);
+
+        label_18 = new QLabel(block_points_vente);
+        label_18->setObjectName(QStringLiteral("label_18"));
+        label_18->setStyleSheet(QStringLiteral("font-weight:bold"));
+
+        horizontalLayout_23->addWidget(label_18);
 
         horizontalSpacer_13 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -1333,15 +1366,20 @@ public:
         horizontalLayout_17 = new QHBoxLayout();
         horizontalLayout_17->setSpacing(6);
         horizontalLayout_17->setObjectName(QStringLiteral("horizontalLayout_17"));
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        info = new QLabel(centralWidget);
+        info->setObjectName(QStringLiteral("info"));
 
-        horizontalLayout_17->addItem(horizontalSpacer_3);
+        horizontalLayout_17->addWidget(info);
 
         serveur_distant = new QCheckBox(centralWidget);
         serveur_distant->setObjectName(QStringLiteral("serveur_distant"));
         serveur_distant->setEnabled(false);
 
         horizontalLayout_17->addWidget(serveur_distant);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_17->addItem(horizontalSpacer_3);
 
         line = new QFrame(centralWidget);
         line->setObjectName(QStringLiteral("line"));
@@ -1359,10 +1397,6 @@ public:
 "color:white;"));
 
         horizontalLayout_17->addWidget(pushButton_12);
-
-        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_17->addItem(horizontalSpacer_8);
 
 
         verticalLayout_2->addLayout(horizontalLayout_17);
@@ -1451,7 +1485,10 @@ public:
         total_depense->setText(QApplication::translate("MainWindow", "-0", 0));
         label_15->setText(QApplication::translate("MainWindow", "Retrait", 0));
         total_retrait->setText(QApplication::translate("MainWindow", "-0", 0));
+        label_17->setText(QApplication::translate("MainWindow", "Impay\303\251", 0));
+        total_impaye->setText(QApplication::translate("MainWindow", "0", 0));
         pushButton_5->setText(QString());
+        label_18->setText(QApplication::translate("MainWindow", "NET", 0));
         reste_recette->setText(QApplication::translate("MainWindow", "0", 0));
         pushButton_9->setText(QString());
         groupBox_2->setTitle(QApplication::translate("MainWindow", "Autres sevices", 0));
@@ -1556,6 +1593,7 @@ public:
         stock_alerte->setTitle(QApplication::translate("MainWindow", "Stock d'alertes", 0));
         list_prepaye->setTitle(QApplication::translate("MainWindow", "D\303\251pots des clients", 0));
         impayes->setTitle(QApplication::translate("MainWindow", "Impay\303\251s", 0));
+        info->setText(QString());
         serveur_distant->setText(QApplication::translate("MainWindow", "Utiliser le serveur distant", 0));
         pushButton_12->setText(QApplication::translate("MainWindow", "Synchroniser", 0));
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0));

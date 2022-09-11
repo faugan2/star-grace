@@ -29,7 +29,7 @@ DetailsVente::DetailsVente(QWidget *parent) :
      float valeur_total=0;
      while(qr.next()){
          QString id_produit=qr.value("produit").toString();
-         QString qte=qr.value("qte_m2").toString().replace('-',"");
+         QString qte=qr.value("total_m2").toString().replace('-',"");
          QString pu=qr.value("prix").toString();
          QString unite=qr.value("unite").toString();
          if(unite!="m2" && unite!=""){
@@ -38,7 +38,7 @@ DetailsVente::DetailsVente(QWidget *parent) :
 
 
          QSqlQuery qr2;
-         qr2.exec("select * from stock where id='"+id_produit+"'");
+         qr2.exec("select * from stock where token_id='"+id_produit+"'");
          QString nom_produit="";
          float prix=0;
          if(qr2.next()){
@@ -108,7 +108,7 @@ DetailsVente::DetailsVente(QWidget *parent) :
                      QString total_biz=line2.at(3);
 
                      QSqlQuery qr3;
-                     qr3.exec("select * from stock where id='"+produit_biz+"'");
+                     qr3.exec("select * from stock where token_id='"+produit_biz+"'");
                      QString nom_produit_biz="";
                      if(qr3.next()){
                          nom_produit_biz=qr3.value("nom").toString();

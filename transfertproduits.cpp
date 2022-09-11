@@ -264,13 +264,45 @@ void TransfertProduits::on_pushButton_clicked()
                 qr2.bindValue(":point_vente",id_pv_du);
                 qr2.bindValue(":nb_cartons",QString::number(token));
                 qr2.bindValue(":token","4");
-                qr2.bindValue(":qte_m2","-"+QString::number(total_cartons));
+
+
+                if(total_cartons>0){
+                    qr2.bindValue(":qte_m2","-"+QString::number(total_cartons));
+                }else{
+                    qr2.bindValue(":qte_m2",QString::number(total_cartons*-1));
+                }
+
+                qr2.bindValue(":prix",prix);
+                qr2.bindValue(":unite","Carton");
+                qr2.bindValue(":token_id",token_id2);
+                if(total_cartons>0){
+                    qr2.bindValue(":total_cartons","-"+QString::number(total_cartons));
+                }else{
+                    qr2.bindValue(":total_cartons",QString::number(total_cartons*-1));
+                }
+
+                if(total_m2>0){
+                    qr2.bindValue(":total_m2",QString::number(total_m2));
+                }else{
+                    qr2.bindValue(":total_m2",QString::number(total_m2*-1));
+                }
+
+                if(total_pieces>0){
+                    qr2.bindValue(":total_pieces","-"+QString::number(total_pieces));
+                }else{
+                    qr2.bindValue(":total_pieces",QString::number(total_pieces*-1));
+                }
+
+
+
+
+               /*qr2.bindValue(":qte_m2","-"+QString::number(total_cartons));
                 qr2.bindValue(":prix",prix);
                 qr2.bindValue(":unite","Carton");
                 qr2.bindValue(":token_id",token_id2);
                 qr2.bindValue(":total_cartons","-"+QString::number(total_cartons));
                 qr2.bindValue(":total_m2","-"+QString::number(total_m2));
-                qr2.bindValue(":total_pieces","-"+QString::number(total_pieces));
+                qr2.bindValue(":total_pieces","-"+QString::number(total_pieces));*/
                 qr2.exec();
 
                 //QMessageBox::information(this,"Success","L'opération de transfert s'est bien passé");

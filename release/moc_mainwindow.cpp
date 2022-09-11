@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[94];
-    char stringdata[2073];
+    QByteArrayData data[100];
+    char stringdata[2196];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -122,7 +122,13 @@ QT_MOC_LITERAL(89, 2016, 6),
 QT_MOC_LITERAL(90, 2023, 11),
 QT_MOC_LITERAL(91, 2035, 12),
 QT_MOC_LITERAL(92, 2048, 5),
-QT_MOC_LITERAL(93, 2054, 17)
+QT_MOC_LITERAL(93, 2054, 17),
+QT_MOC_LITERAL(94, 2072, 31),
+QT_MOC_LITERAL(95, 2104, 38),
+QT_MOC_LITERAL(96, 2143, 10),
+QT_MOC_LITERAL(97, 2154, 13),
+QT_MOC_LITERAL(98, 2168, 11),
+QT_MOC_LITERAL(99, 2180, 14)
     },
     "MainWindow\0on_actionFermer_triggered\0"
     "\0on_actionDeconnexion_triggered\0"
@@ -183,6 +189,10 @@ QT_MOC_LITERAL(93, 2054, 17)
     "on_affichage_pieces_clicked\0new_price\0"
     "from\0to\0price\0qte_m2\0qte_cartons\0"
     "synchroniser\0table\0synchroniser_tout\0"
+    "on_table_inventaire_cellChanged\0"
+    "on_table_inventaire_currentCellChanged\0"
+    "currentRow\0currentColumn\0previousRow\0"
+    "previousColumn\0"
 };
 #undef QT_MOC_LITERAL
 
@@ -192,7 +202,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      80,   14, // methods
+      82,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -200,86 +210,88 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  414,    2, 0x08,
-       3,    0,  415,    2, 0x08,
-       4,    1,  416,    2, 0x08,
-       6,    0,  419,    2, 0x08,
-       6,    1,  420,    2, 0x08,
-       8,    1,  423,    2, 0x08,
-      10,    1,  426,    2, 0x08,
-      11,    0,  429,    2, 0x08,
-      12,    0,  430,    2, 0x08,
-      13,    0,  431,    2, 0x08,
-      14,    0,  432,    2, 0x08,
-      15,    0,  433,    2, 0x08,
-      16,    0,  434,    2, 0x08,
-      17,    0,  435,    2, 0x08,
-      18,    0,  436,    2, 0x08,
-      19,    0,  437,    2, 0x08,
-      20,    0,  438,    2, 0x08,
-      21,    0,  439,    2, 0x08,
-      22,    1,  440,    2, 0x08,
-      24,    0,  443,    2, 0x08,
-      25,    0,  444,    2, 0x08,
-      26,    0,  445,    2, 0x08,
-      27,    0,  446,    2, 0x08,
-      28,    0,  447,    2, 0x08,
-      29,    0,  448,    2, 0x08,
-      30,    0,  449,    2, 0x08,
-      31,    1,  450,    2, 0x08,
-      32,    1,  453,    2, 0x08,
-      33,    1,  456,    2, 0x08,
-      34,    1,  459,    2, 0x08,
-      35,    0,  462,    2, 0x08,
-      36,    0,  463,    2, 0x08,
-      37,    0,  464,    2, 0x08,
-      38,    0,  465,    2, 0x08,
-      39,    1,  466,    2, 0x08,
-      40,    0,  469,    2, 0x08,
-      41,    0,  470,    2, 0x08,
-       4,    1,  471,    2, 0x08,
-      42,    1,  474,    2, 0x08,
-      43,    0,  477,    2, 0x08,
-      44,    0,  478,    2, 0x08,
-      45,    1,  479,    2, 0x08,
-      46,    1,  482,    2, 0x08,
-      47,    1,  485,    2, 0x08,
-      48,    1,  488,    2, 0x08,
-      49,    1,  491,    2, 0x08,
-      51,    1,  494,    2, 0x08,
-      52,    0,  497,    2, 0x08,
-      53,    0,  498,    2, 0x08,
-      54,    0,  499,    2, 0x08,
-      55,    0,  500,    2, 0x08,
-      56,    0,  501,    2, 0x08,
-      57,    0,  502,    2, 0x08,
-      58,    0,  503,    2, 0x08,
-      59,    2,  504,    2, 0x08,
-      62,    0,  509,    2, 0x08,
-      63,    0,  510,    2, 0x08,
-      64,    0,  511,    2, 0x08,
-      65,    0,  512,    2, 0x08,
-      66,    1,  513,    2, 0x08,
-      67,    1,  516,    2, 0x08,
-      68,    0,  519,    2, 0x08,
-      69,    0,  520,    2, 0x08,
-      70,    0,  521,    2, 0x08,
-      71,    0,  522,    2, 0x08,
-      72,    0,  523,    2, 0x08,
-      73,    0,  524,    2, 0x08,
-      74,    0,  525,    2, 0x08,
-      75,    1,  526,    2, 0x08,
-      76,    1,  529,    2, 0x08,
-      77,    0,  532,    2, 0x08,
-      78,    0,  533,    2, 0x08,
-      79,    1,  534,    2, 0x08,
-      81,    2,  537,    2, 0x08,
-      82,    0,  542,    2, 0x08,
-      83,    0,  543,    2, 0x08,
-      84,    0,  544,    2, 0x08,
-      85,    5,  545,    2, 0x08,
-      91,    1,  556,    2, 0x08,
-      93,    0,  559,    2, 0x08,
+       1,    0,  424,    2, 0x08,
+       3,    0,  425,    2, 0x08,
+       4,    1,  426,    2, 0x08,
+       6,    0,  429,    2, 0x08,
+       6,    1,  430,    2, 0x08,
+       8,    1,  433,    2, 0x08,
+      10,    1,  436,    2, 0x08,
+      11,    0,  439,    2, 0x08,
+      12,    0,  440,    2, 0x08,
+      13,    0,  441,    2, 0x08,
+      14,    0,  442,    2, 0x08,
+      15,    0,  443,    2, 0x08,
+      16,    0,  444,    2, 0x08,
+      17,    0,  445,    2, 0x08,
+      18,    0,  446,    2, 0x08,
+      19,    0,  447,    2, 0x08,
+      20,    0,  448,    2, 0x08,
+      21,    0,  449,    2, 0x08,
+      22,    1,  450,    2, 0x08,
+      24,    0,  453,    2, 0x08,
+      25,    0,  454,    2, 0x08,
+      26,    0,  455,    2, 0x08,
+      27,    0,  456,    2, 0x08,
+      28,    0,  457,    2, 0x08,
+      29,    0,  458,    2, 0x08,
+      30,    0,  459,    2, 0x08,
+      31,    1,  460,    2, 0x08,
+      32,    1,  463,    2, 0x08,
+      33,    1,  466,    2, 0x08,
+      34,    1,  469,    2, 0x08,
+      35,    0,  472,    2, 0x08,
+      36,    0,  473,    2, 0x08,
+      37,    0,  474,    2, 0x08,
+      38,    0,  475,    2, 0x08,
+      39,    1,  476,    2, 0x08,
+      40,    0,  479,    2, 0x08,
+      41,    0,  480,    2, 0x08,
+       4,    1,  481,    2, 0x08,
+      42,    1,  484,    2, 0x08,
+      43,    0,  487,    2, 0x08,
+      44,    0,  488,    2, 0x08,
+      45,    1,  489,    2, 0x08,
+      46,    1,  492,    2, 0x08,
+      47,    1,  495,    2, 0x08,
+      48,    1,  498,    2, 0x08,
+      49,    1,  501,    2, 0x08,
+      51,    1,  504,    2, 0x08,
+      52,    0,  507,    2, 0x08,
+      53,    0,  508,    2, 0x08,
+      54,    0,  509,    2, 0x08,
+      55,    0,  510,    2, 0x08,
+      56,    0,  511,    2, 0x08,
+      57,    0,  512,    2, 0x08,
+      58,    0,  513,    2, 0x08,
+      59,    2,  514,    2, 0x08,
+      62,    0,  519,    2, 0x08,
+      63,    0,  520,    2, 0x08,
+      64,    0,  521,    2, 0x08,
+      65,    0,  522,    2, 0x08,
+      66,    1,  523,    2, 0x08,
+      67,    1,  526,    2, 0x08,
+      68,    0,  529,    2, 0x08,
+      69,    0,  530,    2, 0x08,
+      70,    0,  531,    2, 0x08,
+      71,    0,  532,    2, 0x08,
+      72,    0,  533,    2, 0x08,
+      73,    0,  534,    2, 0x08,
+      74,    0,  535,    2, 0x08,
+      75,    1,  536,    2, 0x08,
+      76,    1,  539,    2, 0x08,
+      77,    0,  542,    2, 0x08,
+      78,    0,  543,    2, 0x08,
+      79,    1,  544,    2, 0x08,
+      81,    2,  547,    2, 0x08,
+      82,    0,  552,    2, 0x08,
+      83,    0,  553,    2, 0x08,
+      84,    0,  554,    2, 0x08,
+      85,    5,  555,    2, 0x08,
+      91,    1,  566,    2, 0x08,
+      93,    0,  569,    2, 0x08,
+      94,    2,  570,    2, 0x08,
+      95,    4,  575,    2, 0x08,
 
  // slots: parameters
     QMetaType::Void,
@@ -362,6 +374,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Float, QMetaType::QString, QMetaType::QString, QMetaType::Float, QMetaType::Float, QMetaType::Float,   86,   87,   88,   89,   90,
     QMetaType::Void, QMetaType::QString,   92,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   60,   61,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,   96,   97,   98,   99,
 
        0        // eod
 };
@@ -453,6 +467,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             if (_a[0]) *reinterpret_cast< float*>(_a[0]) = _r; }  break;
         case 78: _t->synchroniser((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 79: _t->synchroniser_tout(); break;
+        case 80: _t->on_table_inventaire_cellChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 81: _t->on_table_inventaire_currentCellChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -494,13 +510,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 80)
+        if (_id < 82)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 80;
+        _id -= 82;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 80)
+        if (_id < 82)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 80;
+        _id -= 82;
     }
     return _id;
 }

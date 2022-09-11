@@ -199,6 +199,10 @@ private slots:
     void synchroniser(QString table);
     void synchroniser_tout();
 
+    void on_table_inventaire_cellChanged(int row, int column);
+
+    void on_table_inventaire_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+
 public:
     void print_facture(QString token);
     void close_db();
@@ -268,6 +272,8 @@ private:
 };
 
 #endif // MAINWINDOW_H
+
+
 
 
 

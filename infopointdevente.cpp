@@ -11,7 +11,7 @@ InfoPointDeVente::InfoPointDeVente(QString id,QWidget *parent) :
     this->id_selected=id;
 
     QSqlQuery qr;
-    qr.exec("select * from points_vente where id='"+id+"'");
+    qr.exec("select * from points_vente where token_id='"+id+"'");
     if(qr.next()){
         QString nom=qr.value("adresse").toString();
         point_vente=nom;
@@ -27,6 +27,21 @@ InfoPointDeVente::InfoPointDeVente(QString id,QWidget *parent) :
     ui->table_produits->horizontalHeader()->setStretchLastSection(true);
 
     ui->table_produits->setColumnWidth(0,120);
+
+
+    qr.exec("select * from user");
+    QString id_user="";
+    if(qr.next()){
+        id_user=qr.value(0).toString();
+    }
+    qr.exec("select * from droit where user='"+id_user+"'");
+    if(qr.next()){
+        QString pv=qr.value("point_vente").toString();
+        qDebug()<<"le droit point de vente est "<<pv;
+        if(pv=="0"){
+           ui->btn_modifier_stock->hide();
+        }
+    }
 }
 
 InfoPointDeVente::~InfoPointDeVente()

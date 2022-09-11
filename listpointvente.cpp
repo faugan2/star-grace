@@ -10,6 +10,23 @@ listpointvente::listpointvente(QWidget *parent) :
     setFixedWidth(750);
     load_list();
     init();
+
+    QSqlQuery qr;
+    qr.exec("select * from user");
+    QString id_user="";
+    if(qr.next()){
+        id_user=qr.value(0).toString();
+    }
+    qr.exec("select * from droit where user='"+id_user+"'");
+    if(qr.next()){
+        QString pv=qr.value("point_vente").toString();
+        qDebug()<<"le droit point de vente est "<<pv;
+        if(pv=="0"){
+            ui->btn_del->hide();
+            ui->btn_edit->hide();
+            ui->pushButton->hide();
+        }
+    }
 }
 
 listpointvente::~listpointvente()

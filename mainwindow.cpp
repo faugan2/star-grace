@@ -16,6 +16,7 @@ MainWindow::MainWindow(QSqlDatabase db, QString id_user,QWidget *parent) :
 
 
 
+    ui->pushButton_5->hide();
 
 
     QToolBar * toolbar;
@@ -80,6 +81,21 @@ MainWindow::MainWindow(QSqlDatabase db, QString id_user,QWidget *parent) :
         QString user_name=qr.value("nom").toString();
         ui->user_name->setText("Bonjour "+user_name.toUpper()+",");
         id_pv=qr.value("point_vente").toString();
+        if(qr.value("type").toString()=="Admin" && id_pv!="-"){
+            ui->total_depense->hide();
+            ui->total_recette->hide();
+            ui->total_retrait->hide();
+            ui->reste_recette->hide();
+            ui->label_11->hide();
+            ui->label_15->hide();
+            ui->label_16->hide();
+            ui->label_17->hide();
+            ui->label_18->hide();
+            ui->total_impaye->hide();
+            ui->pushButton_5->hide();
+            ui->table_recette->setMinimumHeight(220);
+        }
+
     }
 
     if(id_pv!=""){
@@ -169,11 +185,12 @@ void MainWindow::on_produits_currentIndexChanged(int index)
         ui->pu->setText(pu);
     }
 
-    qDebug()<<"select sum(qte) from mouvements where point_vente='"+user_info.at(4).toUpper()+"' and produit='"+id_produit+"'";
+    qDebug()<<"select sum(total_cartons) from mouvements where point_vente='"+user_info.at(4).toUpper()+"' and produit='"+id_produit+"'";
 
     qr.exec("select sum(total_cartons) from mouvements where point_vente='"+user_info.at(4).toUpper()+"' and produit='"+id_produit+"'");
     if(qr.next()){
-        QString total=qr.value(0).toString().replace(QChar('-'),"");
+        QString total=qr.value(0).toString();
+        qDebug()<<"the result is "<<total<<"le format est donc "<<format_nom;
         QSqlQuery qr2;
         if(format_nom.length()>3){
             QString new_qte_in_stock="";
@@ -191,7 +208,7 @@ void MainWindow::on_produits_currentIndexChanged(int index)
                     new_qte_in_stock+=QString::number(nb_p)+" pieces";
                     ui->label_qte->setText(new_qte_in_stock);
                 }else{
-                    ui->label_qte->setText("---");
+                    ui->label_qte->setText(new_qte_in_stock);
                 }
 
             }else{
@@ -1486,6 +1503,8 @@ void MainWindow::load_inventaire()
         req+=" and date between '"+du+"' and '"+au+"'";
     }
 
+    req+=" order by date asc";
+
     bool affichage_m2=ui->affichage_m2->isChecked();
     bool affichage_cartons=ui->affichage_cartons->isChecked();
     bool affichage_pieces=ui->affichage_pieces->isChecked();
@@ -1507,6 +1526,7 @@ void MainWindow::load_inventaire()
         QString produit=qr.value("produit").toString();
         QString pu_tmp=qr.value("prix").toString();
         QString token=qr.value("token").toString();
+        QString id=qr.value("id").toString();
 
         QSqlQuery qr2;
         qr2.exec("select * from stock where token_id='"+produit+"'");
@@ -1606,6 +1626,7 @@ void MainWindow::load_inventaire()
         ui->table_inventaire->item(row,7)->setTextAlignment(Qt::AlignCenter);
 
          ui->table_inventaire->item(row,4)->setToolTip(token);
+         ui->table_inventaire->item(row,0)->setToolTip(id);
 
 
 
@@ -1791,6 +1812,7 @@ void MainWindow::load_recette()
     QSqlQuery qr;
     int total=0;
     float valeur_total=0;
+    float total_impaye=0;
     QString date2=ui->date_recette->date().toString("yyyy-MM-dd");
 
     int index_user=ui->utilisateur_recette->currentIndex();
@@ -1814,12 +1836,13 @@ void MainWindow::load_recette()
     int row=0;
     while(qr.next()){
         QString token=qr.value(0).toString();
+        qDebug()<<"tour de "<<token<<"recette";
         QSqlQuery qr2;
         qr2.exec("select * from mouvements where token='"+token+"' ");
         float valeur=0;
         QString date="";
         while(qr2.next()){
-            float qte=qr2.value("qte_m2").toFloat();
+            float qte=qr2.value("total_m2").toFloat();
             QString pu=qr2.value("prix").toString();
             date=qr2.value("date").toString().split('T').at(0);
             QString id_produit=qr2.value("produit").toString();
@@ -1828,25 +1851,42 @@ void MainWindow::load_recette()
                 qr3.exec("select * from stock where token_id='"+id_produit+"'");
                 if(qr3.next()){
                     float prix=qr3.value("prix_par_m2").toFloat();
-                    valeur+=abs((int)qte)*prix;
+                    valeur+=qte*prix;
 
                 }
             }else{
-                valeur+=abs((int)qte)*pu.toFloat();
+                valeur+=qte*pu.toFloat();
             }
+            if(token=="1662478526"){
+                //qDebug()<<QString::number(qte)<<qstring
+            }
+
 
         }
 
         QString non_livre="0";
         QString id_facture="";
+        QString str_impaye="";
         qr2.exec("select * from ventes_options where token='"+token+"'");
         if(qr2.next()){
             non_livre=qr2.value("non_livre").toString();
             id_facture=qr2.value("id").toString();
+            QString impaye=qr2.value("impaye").toString();
+            str_impaye=impaye;
+            if(!impaye.isEmpty()){
+                QStringList imp=impaye.split("#");
+                if(imp.length()==3){
+                    float mt_impaye=imp.at(2).toFloat();
+                    total_impaye+=mt_impaye;
+                }
+
+            }
 
         }
 
-
+        if(valeur<0){
+            valeur*=-1;
+        }
         ui->table_recette->setRowCount(row+1);
         ui->table_recette->setItem(row,0,new QTableWidgetItem(id_facture));
         ui->table_recette->setItem(row,1,new QTableWidgetItem(QString::number(valeur)));
@@ -1858,6 +1898,14 @@ void MainWindow::load_recette()
             for(int x=0; x<2; x++){
                 ui->table_recette->item(row,x)->setBackground(QBrush(QColor("pink")));
             }
+        }
+
+        if(!str_impaye.isEmpty()){
+            for(int x=0; x<2; x++){
+                ui->table_recette->item(row,x)->setBackground(QBrush(QColor("purple")));
+            }
+            ui->table_recette->item(row,0)->setTextColor("white");
+             ui->table_recette->item(row,1)->setTextColor("white");
         }
 
         row++;
@@ -1886,8 +1934,12 @@ void MainWindow::load_recette()
     if(qr.next()){
         total_retrait=qr.value(0).toFloat();
     }
+
+
+
     ui->total_retrait->setText("-"+QString::number(total_retrait));
-    float reste_recette=valeur_total - total_depense - total_retrait;
+    ui->total_impaye->setText("-"+QString::number(total_impaye));
+    float reste_recette=valeur_total - total_depense - total_retrait - total_impaye;
     ui->reste_recette->setText(QString::number(reste_recette));
 
 }
@@ -1985,7 +2037,7 @@ void MainWindow::load_droit()
             ui->toolButton_11->setEnabled(false);
         }
         if(point_vente=="0"){
-            ui->menuPoints_de_vente->setDisabled(true);
+            //ui->menuPoints_de_vente->setDisabled(true);
         }
         if(utilisateurs=="0"){
             ui->menuUtilisateurs->setDisabled(true);
@@ -2010,6 +2062,9 @@ void MainWindow::load_droit()
         }
 
     }
+
+    //qr
+    //qr.exec("select * from points_vente where token_id='"+'")
 }
 
 void MainWindow::print_facture(QString token)
@@ -2388,4 +2443,97 @@ void MainWindow::synchroniser_tout()
     QString url="http://127.0.0.1/db/saving.php";
 
     mgr->get(QNetworkRequest(QUrl(url)));
+}
+
+void MainWindow::on_table_inventaire_cellChanged(int row, int column)
+{
+    //qDebug()<<"the cell is changed";
+}
+
+void MainWindow::on_table_inventaire_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+    qDebug()<<"current index changed in new function"<<QString::number(currentRow);
+    //int token=
+    if(currentRow<0){
+        return;
+    }
+    if(ui->table_inventaire->rowCount()<=currentRow){
+        qDebug()<<"not found for "<<QString::number(currentRow);
+        return;
+    }
+    QString id=ui->table_inventaire->item(currentRow,0)->toolTip();
+    QString token=ui->table_inventaire->item(currentRow,4)->toolTip();
+    ui->info->setText(id+" and "+token);
+    QSqlQuery qr;
+    if(token=="1"){
+        //entree
+        ui->info->setText("Entree");
+    }else if(token=="2"){
+        //sortie
+        ui->info->setText("Sortie");
+
+    }else if(token=="3"){
+        //bris
+        ui->info->setText("Bris");
+    }else if(token=="4"){
+        //transfert
+        ui->info->setText("Transfert");
+        qr.exec("select * from mouvements where id='"+id+"'");
+        if(qr.next()){
+            QString token_id=qr.value("token_id").toString();
+            QSqlQuery qr2;
+            int ch_t=0;
+            qr2.exec("select count(*) from transfert where token_id='"+token_id+"'");
+            if(qr2.next()){
+                ch_t=qr2.value(0).toInt();
+            }
+
+            if(ch_t==0){
+                QString str=token_id;
+                token_id=QString::number(token_id.toUInt()-1);
+                ui->info->setText("nothin gothe "+str+" and enw toke is "+token_id);
+            }
+
+
+
+            qr2.exec("select * from transfert where token_id='"+token_id+"'");
+            if(qr2.next()){
+                QString du=qr2.value("du").toString();
+                QString a=qr2.value("a").toString();
+
+                QString nom_du="";
+                QString nom_a="";
+                QSqlQuery qr3;
+                qr3.exec("select * from points_vente where token_id='"+du+"'");
+                if(qr3.next()){
+                    nom_du=qr3.value("adresse").toString();
+                }
+
+                qr3.exec("select * from points_vente where token_id='"+a+"'");
+                if(qr3.next()){
+                    nom_a=qr3.value("adresse").toString();
+                }
+
+                ui->info->setText(nom_du+" -> "+nom_a);
+
+
+            }
+        }
+
+    }else{
+        //vente
+        ui->info->setText("vente now");
+        QSqlQuery qr;
+        qr.exec("select * from mouvements where id='"+id+"'");
+        if(qr.next()){
+            QString id_user=qr.value("user").toString();
+            QSqlQuery qr2;
+            qDebug()<<"select * from users where token_id='"+id_user+"'";
+            qr2.exec("select * from users where token_id='"+id_user+"'");
+            if(qr2.next()){
+                QString nom_user=qr2.value("nom").toString();
+                ui->info->setText("Vente effecutée par "+nom_user);
+            }
+        }
+    }
 }
